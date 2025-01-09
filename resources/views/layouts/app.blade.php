@@ -18,7 +18,7 @@
         {{-- <livewire:layouts.components.navigation.main.navigation /> --}}
 
         {{-- NAVBAR mobile only --}}
-        <livewire:layouts.navigation.main.nav />
+        {{-- <livewire:layouts.navigation.main.nav /> --}}
 
         <!-- Page Heading -->
         {{-- @if (isset($header))

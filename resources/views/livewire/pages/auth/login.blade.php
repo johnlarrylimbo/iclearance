@@ -32,24 +32,24 @@ new #[Layout('layouts.guest')] class extends Component
     <div class="grid min-h-screen lg:grid-cols-2">
         <div class="flex flex-col items-center justify-center bg-pff-primary mobile-tablet:hidden">
             <div>
-                <a href="/" wire:navigate>
-                    <img class="w-auto h-auto"
-                        src="{{ asset('images/logo/functional_foods_logo_v1.png') }}"
+                {{-- <a href="/" wire:navigate> --}}
+                    <img class="login-logo"
+                        src="{{ asset('images/logo/uic-logo.png') }}"
                         alt="Functional Foods Logo"
                     >
-                </a>
+                {{-- </a> --}}
             </div>
         </div>
         <div class="flex items-center justify-center bg-white mobile-tablet:flex-col">
-            <div class="flex flex-col items-center justify-center mobile-tablet:visible lg:hidden">
+            {{-- <div class="flex flex-col items-center justify-center mobile-tablet:visible lg:hidden">
                 <a href="/" wire:navigate>
                     <img class="w-auto h-40"
                         src="{{ asset('images/logo/functional_foods_logo_v1.png') }}"
                         alt="Functional Foods Logo"
                     >
                 </a>
-            </div>
-            <div class="w-full max-w-md p-8">
+            </div> --}}
+            <div class="w-full max-w-md">
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -118,11 +118,11 @@ new #[Layout('layouts.guest')] class extends Component
                                 </div>
                             </div>
                         </x-slot:actions>
-                        <div class="flex items-center justify-center">
+                        {{-- <div class="flex items-center justify-center">
                             <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}" wire:navigate>
                                 {{ __("Want to contribute? Register now!") }}
                             </a>
-                        </div>
+                        </div> --}}
                     </x-mary-form>
                 </div>
             </div>

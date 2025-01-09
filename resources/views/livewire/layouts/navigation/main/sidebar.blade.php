@@ -8,9 +8,9 @@
         {{-- BRAND --}}
         <div class="flex items-center justify-between">
             <div class="flex items-center mt-5 justify-evenly">
-                <img src="{{ asset('images/logo/functional_foods_logo_only.png') }}" class="h-auto w-14" />
+                {{-- <img src="{{ asset('images/logo/functional_foods_logo_only.png') }}" class="h-auto w-14" /> --}}
                 <div class="pl-2" >
-                    <p class="text-xl">Functional Foods PH</p>
+                    <p class="text-xl">UIC iClearance System</p>
                 </div>
             </div>
         </div>

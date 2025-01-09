@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <style>
+        {{-- <style>
             /* Hide scrollbar for WebKit browsers */
             ::-webkit-scrollbar {
                 width: 0;
@@ -26,7 +26,7 @@
                 -ms-overflow-style: none;
                 scrollbar-width: none;
             } */
-        </style>
+        </style> --}}
     </head>
     <body class="min-h-screen font-sans antialiased">
         {{-- <div class="bg-gray-100">
@@ -42,7 +42,7 @@
                 </x-slot:content>
             </x-mary-main>
         </div> --}}
-        {{-- <livewire:layouts.navigation.landing-page.nav /> --}}
+        {{-- <livewire:layouts.navigation.main.nav /> --}}
 
         {{ $slot }}
     </body>

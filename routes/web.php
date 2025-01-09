@@ -3,19 +3,21 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Dashboard\DashboardIndex;
-// use App\Livewire\Pages\Auth\AuthPage;
+use App\Livewire\Pages\Auth\AuthPage;
 
 use Livewire\Volt\Volt;
 
-// Route::get('/', function () {
-//     return view('livewire.pages.auth.login');
-// });
+// Route::get('/', [AuthenticatedSessionController::class, 'create'])
+//                 ->name('login');
 
 Route::middleware('guest')->group(function () {
     Volt::route('register', 'pages.auth.register')
         ->name('register');
 
     Volt::route('login', 'pages.auth.login')
+        ->name('login');
+
+        Volt::route('/', 'pages.auth.login')
         ->name('login');
 
     Volt::route('forgot-password', 'pages.auth.forgot-password')
