@@ -35,8 +35,26 @@
             <x-mary-menu-item title="Dashboard" icon="o-home" link="/dashboard" class="py-4" />
             <x-mary-menu-separator />
 
+            <x-mary-menu-item title="Clearance Monitoring" icon="o-home" link="/monitoring" class="py-4" />
+            <x-mary-menu-separator />
+
+            <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
+                <x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
+                <x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
+                <x-mary-menu-item title="Support Service Personnel" icon="o-home" link="/ssp"/>
+                <x-mary-menu-item title="Maintenance" icon="o-home" link="/maintenance"/>
+                <x-mary-menu-item title="BED Student" icon="o-home" link="/bed-student"/>
+            </x-mary-menu-sub>
+            <x-mary-menu-separator />
+
+            <x-mary-menu-sub title="Clearance Libraries" icon="o-cog-6-tooth" open>
+                <x-mary-menu-item title="Clearance Area" icon="o-home" link="/area" class="mt-3.5"/>
+                <x-mary-menu-item title="Clearance Type" icon="o-home" link="/type" />
+                <x-mary-menu-item title="Manage Clearance(s)" icon="o-home" link="/manage"/>
+            </x-mary-menu-sub>
+
             {{-- @if(auth()->user()->getRoleAttribute()->role_id == 2)
-            <x-mary-menu-item title="Food Substantiation" icon="o-home" link="/contributor-substantiation" class="py-4" />
+                 <x-mary-menu-item title="Food Substantiation" icon="o-home" link="/contributor-substantiation" class="py-4" />
             @endif --}}
 
             {{-- @if(auth()->user()->getRoleAttribute()->role_id == 1)
