@@ -3,3 +3,138 @@
   width: 39% !important;
   margin: 0px auto;
 }
+/*font style*/
+.text-orange{
+  color: #CD5C08;
+}
+
+.fs-12{
+  font-size: 12px !important;
+}
+.fs-13{
+  font-size: 13px !important;
+}
+.fs-14{
+  font-size: 14px !important;
+}
+.fs-15{
+  font-size: 15px !important;
+}
+.fs-16{
+  font-size: 16px !important;
+}
+
+.align-center{
+  text-align: center !important;
+}
+.align-left{
+  text-align: left !important;
+}
+
+.w-3{
+  width: 3% !important;
+}
+.wd-5{
+  width: 5% !important;
+}
+.w-13{
+  width: 13% !important;
+}
+.w-15{
+  width: 15% !important;
+}
+.w-20{
+  width: 20% !important;
+}
+.w-25{
+  width: 25% !important;
+}
+.w-30{
+  width: 30% !important;
+}
+
+.h-40{
+  height: 40px !important;
+}
+.h-2rem {
+    height: 2rem !important;
+}
+.green{
+  background-color: #347928;
+  color: #ffffff;
+}
+.pink{
+  background-color: #d4224c;
+  color: #ffffff;
+}
+.border-btm{
+  border-bottom: 1px solid #C0EBA6;
+}
+.hide{
+  display: none !important;
+}
+.alert-x, .alert-success, .span-alert-message{
+  color: #ffffff;
+}
+.vertical-align-top{
+  vertical-align: top !important;
+}
+.word-wrap{
+  word-wrap: break-word !important;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+input:where(:not([type])){
+  border-width: 0px !important;
+}
+input:where(:not([type])):focus{
+  outline: 0px solid transparent !important;
+  outline-offset: 0px !important;
+}
+.text-green-500 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(34 197 94 / var(--tw-text-opacity)) !important;
+}
+.text-red-500 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(220 20 60 / var(--tw-text-opacity)) !important;
+}
+svg{
+  display: inline !important;
+}
+.btn-error{
+  color: #ffffff !important;
+}
+.btn-success{
+  color: #ffffff !important;
+}
+
+.space-x-4>:not([hidden])~:not([hidden]){
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.hr-custom{
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+.btn-danger{
+  background-color: orange !important;
+  color: #ffffff !important;
+}
+
+.bradius{
+  border-radius: 67px !important;
+}
+
+.food-img-div{
+  height: 103px !important;
+    width: 131px !important;
+}
+
+
+/* custom ID's */
+
+/* #roles{
+  margin-bottom: -0.5rem !important;
+} */

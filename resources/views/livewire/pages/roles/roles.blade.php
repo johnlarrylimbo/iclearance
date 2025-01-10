@@ -15,7 +15,7 @@
 
     <table width="100%" class="table mb-4 table-striped" style="table-layout: fixed;">
       <thead>
-        <tr class="fs-14 green h-2rem">
+        <tr class="fs-14 pink h-2rem">
           <th class="align-center wd-5">#</th>
           <th class="align-center w-25">Role Description</th>
           <th class="align-center w-13">Status</th>
@@ -56,20 +56,20 @@
 
   </x-mary-card>    
 
-  {{-- <x-mary-modal wire:model="addHealthClaimCategoryModal" class="backdrop-blur">
+  <x-mary-modal wire:model="addRoleModal" class="backdrop-blur">
     <x-mary-form wire:submit.prevent="save" no-separator>
 
-      <x-mary-input label="Health Claim Category Description" wire:model="description" id="description" />
+      <x-mary-input label="Role Description" wire:model="description" id="description" />
    
       <x-slot:actions>
-          <x-mary-button label="Cancel" @click="$wire.addHealthClaimCategoryModal = false"/>
+          <x-mary-button label="Cancel" @click="$wire.addRoleModal = false"/>
           <x-mary-button label="Save Record" class="btn-primary" type="submit" spinner="save" />
       </x-slot:actions>
 
     </x-mary-form>
   </x-mary-modal>
 
-  <x-mary-modal wire:model="editHealthClaimCategoryModal" class="backdrop-blur">
+  {{-- <x-mary-modal wire:model="editHealthClaimCategoryModal" class="backdrop-blur">
     <x-mary-form wire:submit.prevent="save_edit" no-separator>
       <x-mary-input type="hidden" wire:model="health_claim_category_id" id="health_claim_category_id" />
       
