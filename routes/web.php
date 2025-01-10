@@ -54,4 +54,6 @@ require __DIR__.'/app_routes/role_routes.php';
 
 require __DIR__.'/app_routes/clearance_area_routes.php';
 
+require __DIR__.'/app_routes/clearance_type_routes.php';
+
 require __DIR__.'/auth.php';

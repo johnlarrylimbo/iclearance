@@ -1,6 +1,6 @@
 <div class="py-12">
 
-  <x-mary-header title="Roles" subtitle="Roles result list">
+  <x-mary-header title="Clearance Area" subtitle="Clearance area result list">
     <x-slot:actions>
       <x-mary-input icon="o-bolt" placeholder="Search..." />
         <x-mary-button icon="o-plus" class="btn-primary" @click="$wire.addClearanceAreaModal = true" />
