@@ -64,11 +64,11 @@
   color: #ffffff;
 }
 .pink{
-  background-color: #d4224c;
+  background-color: #d4224c !important;
   color: #ffffff;
 }
 .border-btm{
-  border-bottom: 1px solid #d4224c;
+  border-bottom: 1px solid #d4224c !important;
 }
 .hide{
   display: none !important;
@@ -135,6 +135,6 @@ svg{
 
 /* custom ID's */
 
-/* #roles{
-  margin-bottom: -0.5rem !important;
-} */
+#roles{
+  margin-bottom: 0.5rem !important;
+}

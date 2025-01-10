@@ -50,9 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/**
- * Health Claims Routes
- */
 require __DIR__.'/app_routes/role_routes.php';
+
+require __DIR__.'/app_routes/clearance_area_routes.php';
 
 require __DIR__.'/auth.php';
