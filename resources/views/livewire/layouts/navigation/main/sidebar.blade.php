@@ -51,7 +51,12 @@
                 <x-mary-menu-item title="Clearance Area" icon="o-home" link="/area" class="mt-3.5"/>
                 <x-mary-menu-item title="Clearance Type" icon="o-home" link="/type" />
                 <x-mary-menu-item title="Manage Clearance(s)" icon="o-home" link="/manage"/>
+                <x-mary-menu-item title="Manage Role(s)" icon="o-home" link="/roles"/>
+                <x-mary-menu-item title="Grant Account Role(s)" icon="o-home" link="/grant-roles"/>
             </x-mary-menu-sub>
+
+            <x-mary-menu-separator />
+            <x-mary-menu-item title="FAQ" icon="o-home" link="/faq" class="py-4" />
 
             {{-- @if(auth()->user()->getRoleAttribute()->role_id == 2)
                  <x-mary-menu-item title="Food Substantiation" icon="o-home" link="/contributor-substantiation" class="py-4" />
