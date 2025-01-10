@@ -41,6 +41,14 @@ class ClearanceArea extends Component
   public $is_student_clearance_area;
   public $is_employee_clearance_area;
   public $is_clearance_area_default_cleared;
+
+  public $edit_parent_clearance_area_id;
+  public $edit_abbreviation;
+  public $edit_description;
+  public $edit_sort;
+  public $edit_is_student_clearance_area;
+  public $edit_is_employee_clearance_area;
+  public $edit_is_clearance_area_default_cleared;
 	
 
 	public function boot(
@@ -141,78 +149,95 @@ class ClearanceArea extends Component
 		$this->clearance_area();
 	}
 
-  // // public function get records by id
-	// public function openEditRoleModal(int $role_id){
-	// 	$this->editRoleModal = true;
-	// 	$this->role_id = $role_id;
+  // public function get records by id
+	public function openEditClearanceAreaModal(int $clearance_area_id){
+		$this->editClearanceAreaModal = true;
+		$this->clearance_area_id = $clearance_area_id;
 
-  //   $param = [  $role_id ];
-  //   $sp_query = "EXEC pr_role_by_id_sel :role_id;";
-  //   $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+    $param = [  $clearance_area_id ];
+    $sp_query = "EXEC pr_clearance_area_by_id_sel :clearance_area_id;";
+    $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 
-	// 	foreach($result as $result){
-	// 		$this->edit_description = $result->label;
-	// 	}
-	// }
+		foreach($result as $result){
+			$this->edit_parent_clearance_area_id = $result->parent_clearance_area_id;
+      $this->edit_abbreviation = $result->abbreviation;
+      $this->edit_description = $result->label;
+      $this->edit_sort = $result->sort;
+      $this->edit_is_student_clearance_area = $result->is_student_clearance_area;
+      $this->edit_is_employee_clearance_area = $result->is_employee_clearance_area;
+      $this->edit_is_clearance_area_default_cleared = $result->default_cleared;
+		}
+	}
 
-  // public function save_edit(){
-	// 	// Validation and saving logic
-	// 	$this->validate([
-	// 		'edit_description' => 'required|string|max:256'
-	// 	]);
+  public function save_edit(){
+		// Validation and saving logic
+		$this->validate([
+			'edit_abbreviation' => 'required|string|max:25',
+      'edit_description' => 'required|string|max:512',
+      'edit_sort' => 'required',
+      'edit_is_student_clearance_area' => 'required',
+      'edit_is_employee_clearance_area' => 'required',
+      'edit_is_clearance_area_default_cleared' => 'required'
+		]);
 
-	// 	// Check for duplicates
-  //   $param = [  $this->role_id, 0 ];
-  //   $sp_query = "EXEC pr_role_check_exists_by_id :role_id, :result_id;";
-  //   $exists = DB::connection('iclearance_connection')->select($sp_query, $param);
+		// Check for duplicates
+    $param = [  $this->clearance_area_id, 0 ];
+    $sp_query = "EXEC pr_clearance_area_check_exists_by_id :clearance_area_id, :result_id;";
+    $exists = DB::connection('iclearance_connection')->select($sp_query, $param);
 
-	// 	if ($exists[0]->result_id == 0) {
-	// 		// Toast
-	// 		$this->error('Record does not exists.');
-	// 	}
-	// 	else{
-  //     $param = [  $this->role_id, $this->edit_description, 0 ];
-  //     $sp_query = "EXEC pr_role_by_id_upd :role_id, :description, :result_id;";
-  //     $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+		if ($exists[0]->result_id == 0) {
+			// Toast
+			$this->error('Record does not exists.');
+		}
+		else{
+      $param = [  $this->clearance_area_id, $this->edit_parent_clearance_area_id, $this->edit_abbreviation, $this->edit_description, $this->edit_sort, $this->edit_is_student_clearance_area, $this->edit_is_employee_clearance_area, $this->edit_is_clearance_area_default_cleared, 0 ];
+      $sp_query = "EXEC pr_clearance_area_by_id_upd :clearance_area_id, :parent_clearance_area_id, :abbreviation, :description, :sort, :is_student_clearance_area, :is_employee_clearance_area, :is_clearance_area_default_cleared, :result_id;";
+      $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 			
-  //     // Toast
-  //     if ($result[0]->result_id > 0) {
-  //       $this->success('Record updated successfully!');
-  //     }else{
-  //       $this->success('Failed to updated role record. Please try again later.');
-  //     }
-	// 	}
+      // Toast
+      if ($result[0]->result_id > 0) {
+        $this->success('Record updated successfully!');
+      }else{
+        $this->success('Failed to update clearance area. Please try again later.');
+      }
+		}
 
-	// 	// Optionally reset form fields after save
-	// 	$this->reset(['role_id', 'role_id']);
-  //   $this->reset(['edit_description', 'edit_description']);
+		// Optionally reset form fields after save
+		$this->reset(['clearance_area_id', 'clearance_area_id']);
+    $this->reset(['edit_parent_clearance_area_id', 'edit_parent_clearance_area_id']);
+    $this->reset(['edit_abbreviation', 'edit_abbreviation']);
+    $this->reset(['edit_description', 'edit_description']);
+    $this->reset(['edit_sort', 'edit_sort']);
+    $this->reset(['edit_is_student_clearance_area', 'edit_is_student_clearance_area']);
+    $this->reset(['edit_is_employee_clearance_area', 'edit_is_employee_clearance_area']);
+    $this->reset(['edit_is_clearance_area_default_cleared', 'edit_is_clearance_area_default_cleared']);
 
-	// 	// Close the modal
-	// 	$this->editRoleModal  = false;
+		// Close the modal
+		$this->editClearanceAreaModal  = false;
 
-	// 	$this->roles();
-	// }
+		$this->clearance_area();
+	}
 
-  // public function openDeleteRoleModal(int $role_id){
-	// 	$this->deleteRoleModal = true;
-	// 	$this->role_id = $role_id;
-	// }
+  public function openDeleteClearanceAreaModal(int $clearance_area_id){
+		$this->deleteClearanceAreaModal = true;
+		$this->clearance_area_id = $clearance_area_id;
+	}
 
-	// public function delete($role_id){
-  //   $param = [  $role_id, 0 ];
-  //   $sp_query = "EXEC pr_role_by_id_del :role_id, :result_id;";
-  //   $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+	public function delete($clearance_area_id){
+    $param = [  $clearance_area_id, 0 ];
+    $sp_query = "EXEC pr_clearance_area_by_id_del :clearance_area_id, :result_id;";
+    $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 		
-	// 	// Toast
-  //   if ($result[0]->result_id > 0) {
-  //     $this->success('Record deleted successfully!');
-  //   }else{
-  //     $this->success('Failed to remove role. Please try again later.');
-  //   }
+		// Toast
+    if ($result[0]->result_id > 0) {
+      $this->success('Record deleted successfully!');
+    }else{
+      $this->success('Failed to remove clearance area. Clearance area might be used by other records or please try again later.');
+    }
 
-	// 	$this->reset('role_id');
-	// 	$this->deleteRoleModal = false;	
-	// }
+		$this->reset('clearance_area_id');
+		$this->deleteClearanceAreaModal = false;	
+	}
 
 
 	public function render(){

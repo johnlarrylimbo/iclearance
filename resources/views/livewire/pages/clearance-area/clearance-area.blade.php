@@ -137,29 +137,82 @@
     </x-mary-form>
   </x-mary-modal>
 
-  {{-- <x-mary-modal wire:model="editRoleModal" class="backdrop-blur">
+  <x-mary-modal wire:model="editClearanceAreaModal" class="backdrop-blur">
     <x-mary-form wire:submit.prevent="save_edit" no-separator>
-      <x-mary-input type="hidden" wire:model="role_id" id="role_id" />
+
+      <x-mary-input type="hidden" wire:model="clearance_area_id" id="clearance_area_id" />
       
-      <x-mary-input label="Company Name" wire:model="edit_description" id="edit_description" />
+      <x-mary-select
+						label="Parent Clearance Area"
+						:options="$this->parent_clearance_area_options"
+						option-value="clearance_area_id"
+						option-label="label"
+						placeholder="Select a parent clearance area"
+						placeholder-value=""
+						hint="Select one, please."
+						wire:model="edit_parent_clearance_area_id" />
+
+      <x-mary-input label="Abbreviation" wire:model="edit_abbreviation" id="edit_abbreviation" />
+
+      <x-mary-input label="Description" wire:model="edit_description" id="edit_description" />
+
+      <x-mary-select
+						label="Sorting Number"
+						:options="$this->sorting_numbers_options"
+						option-value="default_id_value"
+						option-label="label"
+						placeholder="Select a sorting number"
+						placeholder-value="0"
+						hint="Select one, please."
+						wire:model="edit_sort" />
+      
+      <x-mary-select
+						label="Is Student Clearance Area?"
+						:options="$this->yes_or_no_options"
+						option-value="default_id_value"
+						option-label="label"
+						placeholder="Select a choices"
+						placeholder-value=""
+						hint="Select one, please."
+						wire:model="edit_is_student_clearance_area" />
+
+      <x-mary-select
+						label="Is Employee Clearance Area?"
+						:options="$this->yes_or_no_options"
+						option-value="default_id_value"
+						option-label="label"
+						placeholder="Select a choices"
+						placeholder-value=""
+						hint="Select one, please."
+						wire:model="edit_is_employee_clearance_area" />
+
+      <x-mary-select
+						label="Is Area Default Cleared?"
+						:options="$this->cleared_not_cleared_options"
+						option-value="default_id_value"
+						option-label="label"
+						placeholder="Select a choices"
+						placeholder-value=""
+						hint="Select one, please."
+						wire:model="edit_is_clearance_area_default_cleared" />
 
       <x-slot:actions>
-        <x-mary-button label="Cancel" @click="$wire.editRoleModal = false"/>
+        <x-mary-button label="Cancel" @click="$wire.editClearanceAreaModal = false"/>
         <x-mary-button label="Save Record" class="btn-primary" type="submit" spinner="save_edit" />
       </x-slot:actions>
     </x-mary-form>
-  </x-mary-modal> --}}
+  </x-mary-modal>
 
-  {{-- <x-mary-modal wire:model="deleteRoleModal" class="backdrop-blur" title="Delete Confirmation" separator>
+  <x-mary-modal wire:model="deleteClearanceAreaModal" class="backdrop-blur" title="Delete Confirmation" separator>
 
     <p>Are you sure want to delete?</p>
 
     <x-slot:actions>
-        <x-mary-button label="Cancel" wire:click="deleteRoleModal = false" />
-        <x-mary-button label="Confirm" class="btn-primary" spinner="delete" wire:click="delete({{ $role_id }})"  />
+        <x-mary-button label="Cancel" wire:click="deleteClearanceAreaModal = false" />
+        <x-mary-button label="Confirm" class="btn-primary" spinner="delete" wire:click="delete({{ $clearance_area_id }})"  />
     </x-slot:actions>
 
-  </x-mary-modal> --}}
+  </x-mary-modal>
 
   
 </div>
