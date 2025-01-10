@@ -67,7 +67,6 @@ class Roles extends Component
     $exists = DB::connection('iclearance_connection')->select($sp_query, $param);
 
 		if ($exists[0]->result_id == 1) {
-			// Toast
 			$this->error('Record already exists.');
 		}
 		else{
@@ -75,11 +74,10 @@ class Roles extends Component
       $sp_query = "EXEC pr_role_ins :label, :result_id;";
       $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 			
+      // Toast
       if ($result[0]->result_id > 0) {
-        // Toast
         $this->success('Record added successfully!');
       }else{
-        // Toast
         $this->success('Failed to add new role!');
       }
 		}
@@ -91,6 +89,32 @@ class Roles extends Component
 
 		$this->roles();
 	}
+
+
+
+
+
+  public function openDeleteRoleModal(int $role_id){
+		$this->deleteRoleModal = true;
+		$this->role_id = $role_id;
+	}
+
+	public function delete($role_id){
+    $param = [  $role_id, 0 ];
+    $sp_query = "EXEC pr_role_by_id_del :role_id, :result_id;";
+    $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+		
+		// Toast
+    if ($result[0]->result_id > 0) {
+      $this->success('Record deleted successfully!');
+    }else{
+      $this->success('Failed to remove role. Please try again later.');
+    }
+
+		$this->reset('role_id');
+		$this->deleteRoleModal = false;	
+	}
+
 
 	public function render(){
 		return view('livewire.pages.roles.roles');

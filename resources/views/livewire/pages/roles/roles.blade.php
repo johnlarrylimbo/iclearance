@@ -80,18 +80,18 @@
         <x-mary-button label="Save Record" class="btn-primary" type="submit" spinner="save_edit" />
       </x-slot:actions>
     </x-mary-form>
-  </x-mary-modal>
+  </x-mary-modal> --}}
 
-  <x-mary-modal wire:model="deleteHealthClaimCategoryModal" class="backdrop-blur" title="Delete Confirmation" separator>
+  <x-mary-modal wire:model="deleteRoleModal" class="backdrop-blur" title="Delete Confirmation" separator>
 
     <p>Are you sure want to delete?</p>
 
     <x-slot:actions>
-        <x-mary-button label="Cancel" wire:click="deleteHealthClaimCategoryModal = false" />
-        <x-mary-button label="Confirm" class="btn-primary" spinner="delete" wire:click="delete({{ $health_claim_category_id }})"  />
+        <x-mary-button label="Cancel" wire:click="deleteRoleModal = false" />
+        <x-mary-button label="Confirm" class="btn-primary" spinner="delete" wire:click="delete({{ $role_id }})"  />
     </x-slot:actions>
 
-  </x-mary-modal> --}}
+  </x-mary-modal>
 
   
 </div>
