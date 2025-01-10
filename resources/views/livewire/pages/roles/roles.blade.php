@@ -69,18 +69,18 @@
     </x-mary-form>
   </x-mary-modal>
 
-  {{-- <x-mary-modal wire:model="editHealthClaimCategoryModal" class="backdrop-blur">
+  <x-mary-modal wire:model="editRoleModal" class="backdrop-blur">
     <x-mary-form wire:submit.prevent="save_edit" no-separator>
-      <x-mary-input type="hidden" wire:model="health_claim_category_id" id="health_claim_category_id" />
+      <x-mary-input type="hidden" wire:model="role_id" id="role_id" />
       
       <x-mary-input label="Company Name" wire:model="edit_description" id="edit_description" />
 
       <x-slot:actions>
-        <x-mary-button label="Cancel" @click="$wire.editHealthClaimCategoryModal = false"/>
+        <x-mary-button label="Cancel" @click="$wire.editRoleModal = false"/>
         <x-mary-button label="Save Record" class="btn-primary" type="submit" spinner="save_edit" />
       </x-slot:actions>
     </x-mary-form>
-  </x-mary-modal> --}}
+  </x-mary-modal>
 
   <x-mary-modal wire:model="deleteRoleModal" class="backdrop-blur" title="Delete Confirmation" separator>
 

@@ -90,9 +90,57 @@ class Roles extends Component
 		$this->roles();
 	}
 
+  // public function get records by id
+	public function openEditRoleModal(int $role_id){
+		$this->editRoleModal = true;
+		$this->role_id = $role_id;
 
+    $param = [  $role_id ];
+    $sp_query = "EXEC pr_role_by_id_sel :role_id;";
+    $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 
+		foreach($result as $result){
+			$this->edit_description = $result->label;
+		}
+	}
 
+  public function save_edit(){
+		// Validation and saving logic
+		$this->validate([
+			'edit_description' => 'required|string|max:256'
+		]);
+
+		// Check for duplicates
+    $param = [  $this->role_id, 0 ];
+    $sp_query = "EXEC pr_role_check_exists_by_id :role_id, :result_id;";
+    $exists = DB::connection('iclearance_connection')->select($sp_query, $param);
+
+		if ($exists[0]->result_id == 0) {
+			// Toast
+			$this->error('Record does not exists.');
+		}
+		else{
+      $param = [  $this->role_id, $this->edit_description, 0 ];
+      $sp_query = "EXEC pr_role_by_id_upd :role_id, :description, :result_id;";
+      $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+			
+      // Toast
+      if ($result[0]->result_id > 0) {
+        $this->success('Record updated successfully!');
+      }else{
+        $this->success('Failed to updated role record. Please try again later.');
+      }
+		}
+
+		// Optionally reset form fields after save
+		$this->reset(['role_id', 'role_id']);
+    $this->reset(['edit_description', 'edit_description']);
+
+		// Close the modal
+		$this->editRoleModal  = false;
+
+		$this->roles();
+	}
 
   public function openDeleteRoleModal(int $role_id){
 		$this->deleteRoleModal = true;
