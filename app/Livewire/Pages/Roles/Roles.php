@@ -65,8 +65,6 @@ class Roles extends Component
     $param = [  $this->description, 0 ];
     $sp_query = "EXEC pr_role_check_exists :label, :result_id;";
     $exists = DB::connection('iclearance_connection')->select($sp_query, $param);
-		// $exists = DB::connection('iclearance_connection')->select('EXEC pr_role_check_exists(?,?)', [$this->description, 0]);
-    // $exists = $this->role_service->checkExists($this->description, 0);
 
 		if ($exists[0]->result_id == 1) {
 			// Toast
@@ -76,7 +74,7 @@ class Roles extends Component
       $param = [  $this->description, 0 ];
       $sp_query = "EXEC pr_role_ins :label, :result_id;";
       $result = DB::connection('iclearance_connection')->select($sp_query, $param);
-			// DB::connection('iclearance_connection')->select('EXEC pr_role_ins(?,?)', [ $this->description ]);
+			
       if ($result[0]->result_id > 0) {
         // Toast
         $this->success('Record added successfully!');
