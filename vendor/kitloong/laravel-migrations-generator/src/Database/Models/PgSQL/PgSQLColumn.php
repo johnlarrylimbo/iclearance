@@ -154,11 +154,17 @@ class PgSQLColumn extends DatabaseColumn
             return;
         }
 
+        $dotPosition = Str::position($dataType, '.');
+
+        if ($dotPosition !== false) {
+            $dataType = Str::substr($dataType, $dotPosition + 1);
+        }
+
         if ($dataType === 'geography' || $dataType === 'geometry') {
             return;
         }
 
-        if (!preg_match('/(\w+)(?:\((\w+)(?:,\s*(\w+))?\))?/', $dataType, $matches)) {
+        if (!preg_match('/(\w+)(?:\((\w+)(?:,\s*(\w+))?\))?/', $dataType, $matches) || !isset($matches[2])) {
             return;
         }
 

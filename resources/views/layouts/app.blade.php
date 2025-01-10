@@ -15,6 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        <x-mary-toast />
         {{-- <livewire:layouts.components.navigation.main.navigation /> --}}
 
         {{-- NAVBAR mobile only --}}

@@ -11,8 +11,8 @@ use Livewire\Volt\Volt;
 //                 ->name('login');
 
 Route::middleware('guest')->group(function () {
-    Volt::route('register', 'pages.auth.register')
-        ->name('register');
+    // Volt::route('register', 'pages.auth.register')
+    //     ->name('register');
 
     Volt::route('login', 'pages.auth.login')
         ->name('login');
@@ -26,11 +26,11 @@ Route::middleware('guest')->group(function () {
     Volt::route('reset-password/{token}', 'pages.auth.reset-password')
         ->name('password.reset');
 
-    Route::get('auth/{provider}/redirect', [SocialiteController::class, 'redirectSocial'])
-        ->name('socialite.redirect');
+    // Route::get('auth/{provider}/redirect', [SocialiteController::class, 'redirectSocial'])
+    //     ->name('socialite.redirect');
 
-    Route::get('auth/{provider}/callback', [SocialiteController::class, 'callbackSocial'])
-        ->name('socialite.callback');
+    // Route::get('auth/{provider}/callback', [SocialiteController::class, 'callbackSocial'])
+    //     ->name('socialite.callback');
 
 });
 
@@ -49,5 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+/**
+ * Health Claims Routes
+ */
+require __DIR__.'/app_routes/role_routes.php';
 
 require __DIR__.'/auth.php';
