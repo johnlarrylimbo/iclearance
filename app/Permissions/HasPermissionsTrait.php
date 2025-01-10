@@ -3,6 +3,7 @@
 namespace App\Permissions;
 
 //use App\Models\Permission;
+use App\Models\ClearanceArea;
 use App\Models\Role;
 use App\Models\User;
 
@@ -43,8 +44,19 @@ trait HasPermissionsTrait {
 
   public function hasPermissionThroughRole($permission) {
 
-    foreach ($permission->roles as $role){
-      if($this->roles->contains($role)) {
+    foreach ($permission->clearance_areas as $role){
+      if($this->clearance_areas->contains($role)) {
+        return true;
+      }
+    }
+    return false;
+
+  }
+
+  public function hasClearanceAreaRole( ... $clearance_areas ) {
+
+    foreach ($clearance_areas as $role) {
+      if ($this->clearance_areas->contains('clearance_area_id', $role)) {
         return true;
       }
     }
@@ -63,11 +75,16 @@ trait HasPermissionsTrait {
 
   }
 
-  public function roles() {
-
-    return $this->belongsToMany(Role::class,'account_role','role_id','account_id');
+  public function clearance_areas() {
+    return $this->setConnection('iclearance_connection')->belongsToMany(ClearanceArea::class,'authorize_employee','account_id','clearance_area_id');
 
   }
+
+  public function roles() {
+    return $this->setConnection('iclearance_connection')->belongsToMany(Role::class,'account_role','account_id','role_id');
+
+  }
+
   public function permissions() {
 
     return $this->belongsToMany(Permission::class,'users_permissions');

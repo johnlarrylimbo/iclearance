@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Permissions\HasPermissionsTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -49,9 +50,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function roles()
+    // protected  $appends = [
+    //     'clearance_area'
+    // ];
+
+    public function roles()
+    {
+        return $this->setConnection('iclearance_connection')->belongsToMany(Role::class,'account_role','account_id','role_id');
+    }
+
+    public function clearance_areas()
+    {
+        return $this->setConnection('iclearance_connection')->belongsToMany(ClearanceArea::class,'authorize_employee','account_id','clearance_area_id');
+    }
+
+    // public function getClearanceAttribute()
     // {
-    //     return $this->belongsToMany(Role::class,'account_role','account_id','role_id');
+    //     return $this->clearance_areas->first();
     // }
 
     // public function profile()
