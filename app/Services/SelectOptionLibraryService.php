@@ -58,5 +58,47 @@ class SelectOptionLibraryService extends Service
         }
     }
 
+    public function loadOpenClosedSelectOptions()
+    {
+        try {
+            $result = $this->sp
+                ->stored_procedure('pr_select_option_library_open_closed_lst')
+                ->stored_procedure_connection('iclearance_connection')
+                ->execute();
+
+            return $result->stored_procedure_result();
+        } catch (Exception $exception) {
+            throw new Exception('Error getting open or closed select options', 500, $exception);
+        }
+    }
+
+    public function loadClearanceAreaItemSelectOptions()
+    {
+        try {
+            $result = $this->sp
+                ->stored_procedure('pr_clearance_area_item_select_options')
+                ->stored_procedure_connection('iclearance_connection')
+                ->execute();
+
+            return $result->stored_procedure_result();
+        } catch (Exception $exception) {
+            throw new Exception('Error getting open or closed select options', 500, $exception);
+        }
+    }
+
+    public function loadClearanceEmployeeSelectOptions()
+    {
+        try {
+            $result = $this->sp
+                ->stored_procedure('pr_clearance_employee_item_select_options')
+                ->stored_procedure_connection('iclearance_connection')
+                ->execute();
+
+            return $result->stored_procedure_result();
+        } catch (Exception $exception) {
+            throw new Exception('Error getting open or closed select options', 500, $exception);
+        }
+    }
+
     
 }

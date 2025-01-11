@@ -50,7 +50,7 @@
             <x-mary-menu-sub title="Clearance Libraries" icon="o-cog-6-tooth" open>
                 <x-mary-menu-item title="Clearance Area" icon="o-home" link="/area" class="mt-3.5"/>
                 <x-mary-menu-item title="Clearance Type" icon="o-home" link="/type" />
-                <x-mary-menu-item title="Manage Clearance(s)" icon="o-home" link="/manage"/>
+                <x-mary-menu-item title="Manage Clearance(s)" icon="o-home" link="/manage-clearance"/>
                 <x-mary-menu-item title="Manage Role(s)" icon="o-home" link="/roles"/>
                 <x-mary-menu-item title="Grant Account Role(s)" icon="o-home" link="/grant-roles"/>
             </x-mary-menu-sub>

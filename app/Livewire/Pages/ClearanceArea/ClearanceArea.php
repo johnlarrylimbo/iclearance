@@ -232,7 +232,7 @@ class ClearanceArea extends Component
     if ($result[0]->result_id > 0) {
       $this->success('Record deleted successfully!');
     }else{
-      $this->success('Failed to remove clearance area. Clearance area might be used by other records or please try again later.');
+      $this->error('Failed to remove clearance area. Clearance area might be used by other records or please try again later.');
     }
 
 		$this->reset('clearance_area_id');

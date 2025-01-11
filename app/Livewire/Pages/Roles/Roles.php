@@ -156,7 +156,7 @@ class Roles extends Component
     if ($result[0]->result_id > 0) {
       $this->success('Record deleted successfully!');
     }else{
-      $this->success('Failed to remove role. Please try again later.');
+      $this->error('Failed to remove role. Please try again later.');
     }
 
 		$this->reset('role_id');

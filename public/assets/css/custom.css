@@ -135,6 +135,6 @@ svg{
 
 /* custom ID's */
 
-#roles{
+#roles, #clearance-area, #clearance-type{
   margin-bottom: 0.5rem !important;
 }
