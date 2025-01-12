@@ -99,7 +99,7 @@ class AccessPermission extends Component
 		// Close the modal
 		$this->addAccessPermissionRequestModal  = false;
 
-		$this->clearance_area();
+		$this->access_permission_request();
 	}
 
   // public function get records by id
