@@ -77,7 +77,7 @@
                                   spinner 
                                   class="btn-success btn-sm align-center" />&nbsp;
                   <x-mary-button icon="o-inbox-arrow-down" 
-                                  wire:click="openEditClearanceModal({{ $result->clearance_id }})" 
+                                  wire:click="openPopulateClearanceEmployeeClearanceDetailModal({{ $result->clearance_id }})" 
                                   title="Populate employee clearance(s)."
                                   spinner 
                                   class="btn-primary btn-sm align-center" />&nbsp;
@@ -278,6 +278,17 @@
       </x-slot:actions>
 
     </x-mary-form>
+  </x-mary-modal>
+
+  <x-mary-modal wire:model="populateClearanceEmployeeClearanceDetailModal" class="backdrop-blur" title="Action Confirmation" separator>
+
+    <p>Are you sure want to populate this clearance employee clearance detail? <br /><br/>Once populated, this process cannot be aborted.</p>
+
+    <x-slot:actions>
+        <x-mary-button label="Cancel" wire:click="populateClearanceEmployeeClearanceDetailModal = false" />
+        <x-mary-button label="Confirm" class="btn-primary" spinner="delete" wire:click="populate_employee_clearance_detail({{ $clearance_id }})"  />
+    </x-slot:actions>
+
   </x-mary-modal>
 
   

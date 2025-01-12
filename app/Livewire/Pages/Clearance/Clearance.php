@@ -44,6 +44,7 @@ class Clearance extends Component
 	public bool $deleteClearanceModal = false;
   public bool $addClearanceAreaRecordModal = false;
   public bool $addClearanceEmployeeRecordModal = false;
+  public bool $populateClearanceEmployeeClearanceDetailModal = false;
 
 	public $clearance_id;
 
@@ -428,6 +429,27 @@ class Clearance extends Component
 
 		// Close the modal
 		$this->addClearanceEmployeeRecordModal  = false;
+	}
+
+  public function openPopulateClearanceEmployeeClearanceDetailModal(int $clearance_id){
+		$this->populateClearanceEmployeeClearanceDetailModal = true;
+		$this->clearance_id = $clearance_id;
+	}
+
+  public function populate_employee_clearance_detail($clearance_id){
+    $param = [  $clearance_id ];
+    $sp_query = "EXEC pr_populate_clearance_employee_clearance_detail_by_id :clearance_id;";
+    $result = DB::connection('iclearance_connection')->update($sp_query, $param);
+
+    $param2 = [  $clearance_id, auth()->user()->user_account_id ];
+    $sp_query2 = "EXEC pr_clearance_by_id_upd_populated_status :clearance_id, :account_id;";
+    $result2 = DB::connection('iclearance_connection')->update($sp_query2, $param2);
+		
+		// Toast
+      $this->success('Clearance employee clearande detail record populated successfully!');
+
+		$this->reset('clearance_id');
+		$this->populateClearanceEmployeeClearanceDetailModal = false;	
 	}
 
 	public function render(){
