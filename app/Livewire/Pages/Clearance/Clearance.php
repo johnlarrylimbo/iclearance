@@ -271,7 +271,7 @@ class Clearance extends Component
 		// Validation and saving logic
 		$this->validate([
       'edit_description' => 'required|string|max:512',
-      'edit_is_open' => 'required|integer||not_in:0'
+      'edit_is_open' => 'required|integer|not_in:0'
 		]);
 
 		// Check for duplicates

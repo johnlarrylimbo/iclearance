@@ -35,25 +35,43 @@
             <x-mary-menu-item title="Dashboard" icon="o-home" link="/dashboard" class="py-4" />
             <x-mary-menu-separator />
 
-            <x-mary-menu-item title="Clearance Monitoring" icon="o-home" link="/monitoring" class="py-4" />
-            <x-mary-menu-separator />
+            @if(auth()->user()->hasRole(1))
+                <x-mary-menu-item title="Clearance Monitoring" icon="o-home" link="/monitoring" class="py-4" />
+                <x-mary-menu-separator />
 
-            <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
-                <x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
-                <x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
-                <x-mary-menu-item title="Support Service Personnel" icon="o-home" link="/ssp"/>
-                <x-mary-menu-item title="Maintenance" icon="o-home" link="/maintenance"/>
-                <x-mary-menu-item title="BED Student" icon="o-home" link="/bed-student"/>
-            </x-mary-menu-sub>
-            <x-mary-menu-separator />
+                <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
+                    <x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
+                    <x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
+                    <x-mary-menu-item title="Support Service Personnel" icon="o-home" link="/ssp"/>
+                    <x-mary-menu-item title="Maintenance" icon="o-home" link="/maintenance"/>
+                    <x-mary-menu-item title="BED Student" icon="o-home" link="/bed-student"/>
+                </x-mary-menu-sub>
+                <x-mary-menu-separator />
 
-            <x-mary-menu-sub title="Clearance Libraries" icon="o-cog-6-tooth" open>
-                <x-mary-menu-item title="Clearance Area" icon="o-home" link="/area" class="mt-3.5"/>
-                <x-mary-menu-item title="Clearance Type" icon="o-home" link="/type" />
-                <x-mary-menu-item title="Manage Clearance(s)" icon="o-home" link="/manage-clearance"/>
-                <x-mary-menu-item title="Manage Role(s)" icon="o-home" link="/roles"/>
-                <x-mary-menu-item title="Grant Account Role(s)" icon="o-home" link="/grant-roles"/>
-            </x-mary-menu-sub>
+                <x-mary-menu-sub title="Clearance Libraries" icon="o-cog-6-tooth" open>
+                    <x-mary-menu-item title="Clearance Area" icon="o-home" link="/area" class="mt-3.5"/>
+                    <x-mary-menu-item title="Clearance Type" icon="o-home" link="/type" />
+                    <x-mary-menu-item title="Manage Clearance(s)" icon="o-home" link="/manage-clearance"/>
+                    <x-mary-menu-item title="Manage Role(s)" icon="o-home" link="/roles"/>
+                    <x-mary-menu-item title="Permission(s) Request" icon="o-home" link="/permission-request"/>
+                    <x-mary-menu-item title="System Info" icon="o-home" link="/info"/>
+                </x-mary-menu-sub>
+
+            @elseif(auth()->user()->hasRole(2))
+
+                <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
+                    <x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
+                    <x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
+                    <x-mary-menu-item title="Support Service Personnel" icon="o-home" link="/ssp"/>
+                    <x-mary-menu-item title="Maintenance" icon="o-home" link="/maintenance"/>
+                    <x-mary-menu-item title="BED Student" icon="o-home" link="/bed-student"/>
+                </x-mary-menu-sub>
+
+            @else
+
+                <x-mary-menu-item title="Request Access Permission" icon="o-home" link="/request-access" class="py-4" />
+
+            @endif
 
             <x-mary-menu-separator />
             <x-mary-menu-item title="FAQ" icon="o-home" link="/faq" class="py-4" />

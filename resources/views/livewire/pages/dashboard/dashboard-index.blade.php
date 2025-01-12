@@ -11,8 +11,8 @@
       </x-slot:actions> --}}
   </x-mary-header>
 
-  {{-- {{ auth()->user()->hasClearanceAreaRole(1) }}
-  {{ auth()->user()->hasRole(1) }} --}}
+  {{-- {{ auth()->user()->hasClearanceAreaRole(1) }}--}}
+  {{-- {{ auth()->user() }} --}}
 
   {{-- {{ auth()->user()->getRoleAttribute()->role_id }} --}}
 

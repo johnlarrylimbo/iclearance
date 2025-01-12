@@ -58,4 +58,8 @@ require __DIR__.'/app_routes/clearance_type_routes.php';
 
 require __DIR__.'/app_routes/clearance_routes.php';
 
+require __DIR__.'/app_routes/access_permission_routes.php';
+
+require __DIR__.'/app_routes/permission_request_routes.php';
+
 require __DIR__.'/auth.php';

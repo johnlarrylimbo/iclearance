@@ -103,7 +103,6 @@ new #[Layout('layouts.guest')] class extends Component
                             <div class="inline-flex items-center text-sm text-gray-600">
                                 <x-mary-checkbox id="remember" name="remember" label="Remember me" wire:model="form.remember" class="text-indigo-600 border-gray-300 rounded shadow-sm focus:ring-indigo-500"/>
                             </div>
-
                         </div>
 
                         <x-slot:actions>
