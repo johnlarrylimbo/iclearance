@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\ClearanceArea;
 
-// use App\Services\ClearanceAreaService;
+use App\Services\ClearanceAreaService;
 use App\Services\SelectOptionLibraryService;
 
 use Livewire\WithPagination;
@@ -55,11 +55,11 @@ class WireClearanceArea extends Component
   public $search;
 
 	public function boot(
-		// ClearanceAreaService $clearance_area_service,
+		ClearanceAreaService $clearance_area_service,
     SelectOptionLibraryService $select_option_library_service,
 	)
 	{
-		// $this->clearance_area_service = $clearance_area_service;
+		$this->clearance_area_service = $clearance_area_service;
     $this->select_option_library_service = $select_option_library_service;
 	}
 
@@ -67,50 +67,12 @@ class WireClearanceArea extends Component
 	#[Computed]
 	// public function loadRecords
 	public function clearance_area(){
-		// $clearance_area = $this->clearance_area_service->loadClearanceArea();
-		// return $clearance_area->paginate(10);
     if(!$this->search){
-      return ClearanceArea::on('iclearance_connection')
-                                ->leftJoin('clearance_area as a', 'a.clearance_area_id', '=', 'clearance_area.clearance_area_id')
-                                ->whereNotNull('clearance_area.label')
-                                ->select( DB::raw('ROW_NUMBER() OVER (ORDER BY clearance_area.clearance_area_id ASC) as row_num'),
-                                          'clearance_area.clearance_area_id', 
-                                          'clearance_area.label', 
-                                          'clearance_area.abbreviation', 
-                                          'clearance_area.sort', 
-                                          DB::raw("CASE WHEN clearance_area.is_student_clearance_area = 1 THEN 'Yes' ELSE 'No' END as is_student_clearance_area"),
-                                          DB::raw("CASE WHEN clearance_area.is_employee_clearance_area = 1 THEN 'Yes' ELSE 'No' END as is_employee_clearance_area"),
-                                          DB::raw("CASE WHEN clearance_area.default_cleared = 1 THEN 'Yes' ELSE 'No' END as default_cleared"),
-                                          DB::raw("CASE WHEN a.abbreviation = '' OR a.abbreviation is null THEN '-' ELSE a.abbreviation END as parent_clearance_area_label"),
-                                          DB::raw(" CASE 
-                                                      WHEN clearance_area.statuscode = 1000 THEN 'Active'
-                                                      WHEN clearance_area.statuscode = 1001 THEN 'Inactive'
-                                                      WHEN clearance_area.statuscode = 1002 THEN 'Deleted' 
-                                                  END as statuscode_label"),
-                                          'clearance_area.statuscode')
-                                ->get()
-                                ->paginate(10);
+      $clearance_area = $this->clearance_area_service->loadClearanceArea()->paginate(10);
+		  return $clearance_area;
     }else{
-        return ClearanceArea::on('iclearance_connection')
-                                ->leftJoin('clearance_area as a', 'a.clearance_area_id', '=', 'clearance_area.clearance_area_id')
-                                ->where('clearance_area.label','like', '%' . $this->search . '%')
-                                ->select( DB::raw('ROW_NUMBER() OVER (ORDER BY clearance_area.clearance_area_id ASC) as row_num'),
-                                          'clearance_area.clearance_area_id', 
-                                          'clearance_area.label', 
-                                          'clearance_area.abbreviation', 
-                                          'clearance_area.sort', 
-                                          DB::raw("CASE WHEN clearance_area.is_student_clearance_area = 1 THEN 'Yes' ELSE 'No' END as is_student_clearance_area"),
-                                          DB::raw("CASE WHEN clearance_area.is_employee_clearance_area = 1 THEN 'Yes' ELSE 'No' END as is_employee_clearance_area"),
-                                          DB::raw("CASE WHEN clearance_area.default_cleared = 1 THEN 'Yes' ELSE 'No' END as default_cleared"), 
-                                          DB::raw("CASE WHEN a.abbreviation = '' OR a.abbreviation is null THEN '-' ELSE a.abbreviation END as parent_clearance_area_label"),
-                                          DB::raw(" CASE 
-                                                      WHEN clearance_area.statuscode = 1000 THEN 'Active'
-                                                      WHEN clearance_area.statuscode = 1001 THEN 'Inactive'
-                                                      WHEN clearance_area.statuscode = 1002 THEN 'Deleted' 
-                                                  END as statuscode_label"),
-                                          'clearance_area.statuscode')
-                                ->get()
-                                ->paginate(10);
+      $clearance_area = $this->clearance_area_service->searchClearanceAreaByKeyword($this->search)->paginate(10);
+		  return $clearance_area;
     }
 	}
 
