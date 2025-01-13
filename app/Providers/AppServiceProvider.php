@@ -36,6 +36,8 @@ class AppServiceProvider extends ServiceProvider
         $this->registerMacroPaginator();
     }
 
+
+
     /**
      * Summary of configureCommands
      * @return void

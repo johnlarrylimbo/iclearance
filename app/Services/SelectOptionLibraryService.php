@@ -100,5 +100,19 @@ class SelectOptionLibraryService extends Service
         }
     }
 
+    public function loadClearanceAreaOptions()
+    {
+			try {
+					$result = $this->sp
+							->stored_procedure('pr_clearance_area_select_options')
+                            ->stored_procedure_connection('iclearance_connection')
+							->execute();
+
+					return $result->stored_procedure_result();
+			} catch (Exception $exception) {
+					throw new Exception('Error getting clearance area options', 500, $exception);
+			}
+    }
+
     
 }
