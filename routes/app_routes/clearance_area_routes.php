@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Livewire\Pages\ClearanceArea\ClearanceArea;
+use App\Livewire\Pages\ClearanceArea\WireClearanceArea;
 
 Route::prefix('area')->middleware(['auth'])->group(function() {
-    Route::get('/', ClearanceArea::class)->lazy();
+    Route::get('/', WireClearanceArea::class)->lazy();
 });

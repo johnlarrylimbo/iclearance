@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Pages\Dashboard\DashboardIndex;
-use App\Livewire\Pages\Auth\AuthPage;
+use App\Livewire\Pages\Dashboard\WireDashboard;
+use App\Livewire\Pages\Auth\WireAuth;
 
 use Livewire\Volt\Volt;
 
@@ -40,7 +40,7 @@ Route::middleware('guest')->group(function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', DashboardIndex::class)
+Route::get('/dashboard', WireDashboard::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 

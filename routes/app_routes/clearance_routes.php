@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Livewire\Pages\Clearance\Clearance;
+use App\Livewire\Pages\Clearance\WireClearance;
 
 Route::prefix('manage-clearance')->middleware(['auth'])->group(function() {
-    Route::get('/', Clearance::class)->lazy();
+    Route::get('/', WireClearance::class)->lazy();
 });

@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Livewire\Pages\PermissionRequest\PermissionRequest;
+use App\Livewire\Pages\PermissionRequest\WirePermissionRequest;
 
 Route::prefix('permission-request')->middleware(['auth'])->group(function() {
-    Route::get('/', PermissionRequest::class)->lazy();
+    Route::get('/', WirePermissionRequest::class)->lazy();
 });

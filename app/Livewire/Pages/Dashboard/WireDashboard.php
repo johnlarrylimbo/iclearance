@@ -4,7 +4,7 @@ namespace App\Livewire\Pages\Dashboard;
 
 use Livewire\Component;
 
-class DashboardIndex extends Component
+class WireDashboard extends Component
 {
     public function render()
     {

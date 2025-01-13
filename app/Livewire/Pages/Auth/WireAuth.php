@@ -9,7 +9,7 @@ use Livewire\Attributes\Computed;
 use App\Services\HealthClaimCategoryService;
 
 #[Layout('layouts.auth-page')]
-class AuthPage extends Component
+class WireAuth extends Component
 {
     // protected $health_claim_category_service;
     // public $search_query = '';

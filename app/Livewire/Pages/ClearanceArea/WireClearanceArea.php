@@ -9,7 +9,7 @@ use Livewire\Attributes\Computed;
 
 use Illuminate\Support\Facades\DB;
 
-use App\Models\ClearanceAreaModel;
+use App\Models\ClearanceArea;
 
 // use App\Services\ClearanceAreaService;
 use App\Services\SelectOptionLibraryService;
@@ -21,7 +21,7 @@ use session;
 
 #[Lazy]
 #[Layout('layouts.app')]
-class ClearanceArea extends Component
+class WireClearanceArea extends Component
 {
 
 	use WithPagination;
@@ -53,7 +53,6 @@ class ClearanceArea extends Component
   public $edit_is_clearance_area_default_cleared;
 
   public $search;
-	
 
 	public function boot(
 		// ClearanceAreaService $clearance_area_service,
@@ -71,7 +70,7 @@ class ClearanceArea extends Component
 		// $clearance_area = $this->clearance_area_service->loadClearanceArea();
 		// return $clearance_area->paginate(10);
     if(!$this->search){
-      return ClearanceAreaModel::on('iclearance_connection')
+      return ClearanceArea::on('iclearance_connection')
                                 ->leftJoin('clearance_area as a', 'a.clearance_area_id', '=', 'clearance_area.clearance_area_id')
                                 ->whereNotNull('clearance_area.label')
                                 ->select( DB::raw('ROW_NUMBER() OVER (ORDER BY clearance_area.clearance_area_id ASC) as row_num'),
@@ -92,7 +91,7 @@ class ClearanceArea extends Component
                                 ->get()
                                 ->paginate(10);
     }else{
-        return ClearanceAreaModel::on('iclearance_connection')
+        return ClearanceArea::on('iclearance_connection')
                                 ->leftJoin('clearance_area as a', 'a.clearance_area_id', '=', 'clearance_area.clearance_area_id')
                                 ->where('clearance_area.label','like', '%' . $this->search . '%')
                                 ->select( DB::raw('ROW_NUMBER() OVER (ORDER BY clearance_area.clearance_area_id ASC) as row_num'),

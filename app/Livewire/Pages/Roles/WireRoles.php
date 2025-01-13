@@ -18,7 +18,7 @@ use session;
 
 #[Lazy]
 #[Layout('layouts.app')]
-class Roles extends Component
+class WireRoles extends Component
 {
 
 	use WithPagination;

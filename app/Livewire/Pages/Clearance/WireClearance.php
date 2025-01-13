@@ -24,7 +24,7 @@ use Auth;
 
 #[Lazy]
 #[Layout('layouts.app')]
-class Clearance extends Component
+class WireClearance extends Component
 {
 
 	use WithPagination;

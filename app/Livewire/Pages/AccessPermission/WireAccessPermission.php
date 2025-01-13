@@ -19,7 +19,7 @@ use session;
 
 #[Lazy]
 #[Layout('layouts.app')]
-class AccessPermission extends Component
+class WireAccessPermission extends Component
 {
 
 	use WithPagination;

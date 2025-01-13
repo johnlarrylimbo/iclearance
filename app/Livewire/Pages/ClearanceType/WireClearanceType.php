@@ -9,6 +9,7 @@ use Livewire\Attributes\Computed;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Models\ClearanceType;
 use App\Services\ClearanceTypeService;
 
 use Livewire\WithPagination;
@@ -18,7 +19,7 @@ use session;
 
 #[Lazy]
 #[Layout('layouts.app')]
-class ClearanceType extends Component
+class WireClearanceType extends Component
 {
 
 	use WithPagination;
@@ -37,7 +38,8 @@ class ClearanceType extends Component
 
   public $edit_abbreviation;
   public $edit_description;
-	
+
+	public $search;	
 
 	public function boot(
 		ClearanceTypeService $clearance_type_service,
@@ -50,8 +52,40 @@ class ClearanceType extends Component
 	#[Computed]
 	// public function loadRecords
 	public function clearance_type(){
-		$clearance_type = $this->clearance_type_service->loadClearanceType();
-		return $clearance_type->paginate(10);
+		// $clearance_type = $this->clearance_type_service->loadClearanceType();
+		// return $clearance_type->paginate(10);
+		if(!$this->search){
+			return ClearanceType::on('iclearance_connection')
+                                ->whereNotNull('clearance_type.label')
+                                ->select( DB::raw('ROW_NUMBER() OVER (ORDER BY clearance_type.clearance_type_id ASC) as row_num'),
+                                          'clearance_type.clearance_type_id', 
+                                          'clearance_type.abbreviation', 
+                                          'clearance_type.label', 
+                                          DB::raw(" CASE 
+                                                      WHEN clearance_type.statuscode = 1000 THEN 'Active'
+                                                      WHEN clearance_type.statuscode = 1001 THEN 'Inactive'
+                                                      WHEN clearance_type.statuscode = 1002 THEN 'Deleted' 
+                                                  END as statuscode_label"),
+                                          'clearance_type.statuscode')
+                                ->get()
+                                ->paginate(10);
+		}
+		else{
+			return ClearanceType::on('iclearance_connection')
+                                ->where('clearance_type.label','like', '%' . $this->search . '%')
+                                ->select( DB::raw('ROW_NUMBER() OVER (ORDER BY clearance_type.clearance_type_id ASC) as row_num'),
+                                          'clearance_type.clearance_type_id', 
+                                          'clearance_type.abbreviation', 
+                                          'clearance_type.label', 
+                                          DB::raw(" CASE 
+                                                      WHEN clearance_type.statuscode = 1000 THEN 'Active'
+                                                      WHEN clearance_type.statuscode = 1001 THEN 'Inactive'
+                                                      WHEN clearance_type.statuscode = 1002 THEN 'Deleted' 
+                                                  END as statuscode_label"),
+                                          'clearance_type.statuscode')
+                                ->get()
+                                ->paginate(10);
+		}
 	}
 
 	public function mount(){
