@@ -64,6 +64,16 @@ class User extends Authenticatable
         return $this->setConnection('iclearance_connection')->belongsToMany(ClearanceArea::class,'authorize_employee','account_id','clearance_area_id');
     }
 
+    public function account_role()
+    {
+      return $this->setConnection('iclearance_connection')->hasOne(AccountRole::class, 'account_id', 'user_account_id');
+    }
+
+    public function clearance()
+    {
+        return $this->setConnection('iclearance_connection')->hasOne(Clearance::class);
+    }
+
     // public function getClearanceAttribute()
     // {
     //     return $this->clearance_areas->first();

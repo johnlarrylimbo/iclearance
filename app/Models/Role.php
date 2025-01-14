@@ -14,8 +14,7 @@ class Role extends Model
     protected $primaryKey = 'role_id';
 
     public function users() {
-   
-        return $this->setConnection('iclearance_connection')->belongsToMany(User::class,'account_role','role_id','account_id');
-           
+        return $this->setConnection('iclearance_connection')->belongsToMany(User::class,'account_role','role_id','account_id');    
     }
+
 }

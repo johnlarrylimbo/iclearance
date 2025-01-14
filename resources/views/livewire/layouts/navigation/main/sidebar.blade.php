@@ -1,4 +1,10 @@
 <div>
+<?php
+    use App\Models\Clearance;
+?>
+
+
+    
     <x-slot:sidebar
         drawer="main-drawer"
         collapsible
@@ -60,11 +66,23 @@
             @elseif(auth()->user()->hasRole(2))
 
                 <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
-                    <x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
-                    <x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
-                    <x-mary-menu-item title="Support Service Personnel" icon="o-home" link="/ssp"/>
-                    <x-mary-menu-item title="Maintenance" icon="o-home" link="/maintenance"/>
-                    <x-mary-menu-item title="BED Student" icon="o-home" link="/bed-student"/>
+                    @foreach(Clearance::on('iclearance_connection')->where('is_open',1)->get('clearance_type_id') as $result)
+                        @if($result->clearance_type_id == 3)
+                            <x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
+                        @endif
+                        @if($result->clearance_type_id == 1)
+                            <x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
+                        @endif
+                        @if($result->clearance_type_id == 4)
+                            <x-mary-menu-item title="Support Service Personnel" icon="o-home" link="/ssp"/>
+                        @endif
+                        @if($result->clearance_type_id == 5)
+                            <x-mary-menu-item title="Maintenance" icon="o-home" link="/maintenance"/>
+                        @endif
+                        @if($result->clearance_type_id == 2)
+                            <x-mary-menu-item title="BED Student" icon="o-home" link="/bed-student"/>
+                        @endif
+                    @endforeach
                 </x-mary-menu-sub>
 
             @else

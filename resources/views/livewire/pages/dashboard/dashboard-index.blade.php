@@ -13,6 +13,18 @@
 
   {{-- {{ auth()->user()->hasClearanceAreaRole(1) }}--}}
   {{-- {{ auth()->user() }} --}}
+  {{-- {{ auth()->user()->account_role }} --}}
+
+  {{-- @inject('clearance', 'App\Models\Clearance')
+
+  {{ $clearance->clearance_id }} --}}
+
+    <?php
+        use App\Models\Clearance;
+    ?>
+    {{-- {{ Clearance::on('iclearance_connection')->find() }} --}}
+    {{-- {{ Clearance::on('iclearance_connection')->where('is_open',1)->first() }} --}}
+    {{ Clearance::on('iclearance_connection')->where('is_open',1)->get('clearance_id'); }}
 
   {{-- {{ auth()->user()->getRoleAttribute()->role_id }} --}}
 

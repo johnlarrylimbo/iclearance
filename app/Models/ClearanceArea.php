@@ -14,17 +14,6 @@ class ClearanceArea extends Model
 
     protected $primaryKey = 'clearance_area_id';
 
-    // protected $fillable = [
-    //     'code',
-    //     'label',
-    //     'statuscode'
-    // ];
-
-    // public function user(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(User::class);
-    // }
-
     public function users() {
    
         return $this->setConnection('iclearance_connection')->belongsToMany(User::class,'authorize_employee','clearance_area_id','account_id');
