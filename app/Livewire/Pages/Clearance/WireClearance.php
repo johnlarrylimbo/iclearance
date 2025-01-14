@@ -60,6 +60,7 @@ class WireClearance extends Component
   public $clearance_area_item_id;
   public $clearance_employee_id;
 
+  public $search;	
 
 	public function boot(
 		ClearanceService $clearance_service,
@@ -81,8 +82,16 @@ class WireClearance extends Component
 	// Load records from the database
 	#[Computed]
 	public function clearance(){
-		$clearance = $this->clearance_service->loadClearance();
-		return $clearance->paginate(10);
+		// $clearance = $this->clearance_service->loadClearance();
+		// return $clearance->paginate(10);
+    if(!$this->search){
+			$clearance = $this->clearance_service->loadClearance()->paginate(10);
+			return $clearance;
+		}
+		else{
+			$clearance = $this->clearance_service->searchClearanceByKeyword($this->search)->paginate(10);
+			return $clearance;
+		}
 	}
 
   #[Computed]

@@ -29,5 +29,22 @@ class PermissionRequestService extends Service
             throw new Exception('Error getting access permission request', 500, $exception);
         }
     }
+
+    public function searchPermissionRequestByKeyword(string $search_query)
+    {
+			try {
+        $search = $search_query ?? '';       
+					$result = $this->sp
+										->stored_procedure('pr_permission_request_by_search_lst')
+										->stored_procedure_connection('iclearance_connection')
+										->stored_procedure_params([':keyword'])
+										->stored_procedure_values([$search])
+										->execute();
+
+					return $result->stored_procedure_result();
+			} catch (Exception $exception) {
+					throw new Exception('Error getting access permission request by keyword', 500, $exception);
+			}
+    }
     
 }

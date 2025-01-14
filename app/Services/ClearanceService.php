@@ -29,5 +29,22 @@ class ClearanceService extends Service
             throw new Exception('Error getting clearance', 500, $exception);
         }
     }
+
+    public function searchClearanceByKeyword(string $search_query)
+    {
+			try {
+        $search = $search_query ?? '';       
+					$result = $this->sp
+										->stored_procedure('pr_clearance_by_search_lst')
+										->stored_procedure_connection('iclearance_connection')
+										->stored_procedure_params([':keyword'])
+										->stored_procedure_values([$search])
+										->execute();
+
+					return $result->stored_procedure_result();
+			} catch (Exception $exception) {
+					throw new Exception('Error getting roles options', 500, $exception);
+			}
+    }
     
 }

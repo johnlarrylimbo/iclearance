@@ -30,10 +30,10 @@ class WirePermissionRequest extends Component
 	public bool $disapproveAccessPermissionRequestModal = false;
 
 	public $access_permission_request_id;
-
 	public $clearance_area_id;
-
   public $edit_clearance_area_id;	
+
+	public $search;	
 
 	public function boot(
 		PermissionRequestService $permission_request_service,
@@ -46,8 +46,14 @@ class WirePermissionRequest extends Component
 	#[Computed]
 	// public function loadRecords
 	public function permission_request(){
-		$permission_request = $this->permission_request_service->loadPermissionRequest();
-		return $permission_request->paginate(10);
+		if(!$this->search){
+			$permission_request = $this->permission_request_service->loadPermissionRequest()->paginate(10);
+			return $permission_request;
+		}
+		else{
+			$permission_request = $this->permission_request_service->searchPermissionRequestByKeyword($this->search)->paginate(10);
+			return $permission_request;
+		}
 	}
 
 	public function mount(){

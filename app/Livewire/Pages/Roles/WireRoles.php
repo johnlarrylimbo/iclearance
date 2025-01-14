@@ -48,8 +48,6 @@ class WireRoles extends Component
 	#[Computed]
 	// public function loadRecords
 	public function roles(){
-		// $roles = $this->role_service->loadRoles();
-		// return $roles->paginate(10);
 		if(!$this->search){
 			$roles = $this->role_service->loadRoles()->paginate(10);
 			return $roles;
