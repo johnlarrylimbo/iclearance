@@ -52,7 +52,6 @@ class WireClearanceType extends Component
 	#[Computed]
 	// public function loadRecords
 	public function clearance_type(){
-		
 		if(!$this->search){
 			$clearance_type = $this->clearance_type_service->loadClearanceType()->paginate(10);
 			return $clearance_type;

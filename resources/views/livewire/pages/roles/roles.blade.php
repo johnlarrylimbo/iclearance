@@ -2,7 +2,7 @@
 
   <x-mary-header title="Roles" subtitle="Roles result list">
     <x-slot:actions>
-      <x-mary-input icon="o-bolt" placeholder="Search..." />
+      <x-mary-input icon="o-bolt" placeholder="Search..." wire:model.live="search"/>
         <x-mary-button icon="o-plus" class="btn-primary" @click="$wire.addRoleModal = true" />
     </x-slot:actions>
   </x-mary-header>

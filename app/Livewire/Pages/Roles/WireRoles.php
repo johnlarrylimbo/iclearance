@@ -35,6 +35,8 @@ class WireRoles extends Component
 	public $description;
 	public $edit_description;
 
+	public $search;	
+
 	public function boot(
 		RoleService $role_service,
 	)
@@ -46,8 +48,16 @@ class WireRoles extends Component
 	#[Computed]
 	// public function loadRecords
 	public function roles(){
-		$roles = $this->role_service->loadRoles();
-		return $roles->paginate(10);
+		// $roles = $this->role_service->loadRoles();
+		// return $roles->paginate(10);
+		if(!$this->search){
+			$roles = $this->role_service->loadRoles()->paginate(10);
+			return $roles;
+		}
+		else{
+			$roles = $this->role_service->searchRolesByKeyword($this->search)->paginate(10);
+			return $roles;
+		}
 	}
 
 	public function mount(){
