@@ -43,6 +43,9 @@
 .w-15{
   width: 15% !important;
 }
+.wd-12{
+  width: 12% !important;
+}
 .w-20{
   width: 20% !important;
 }
@@ -138,3 +141,18 @@ svg{
 #roles, #clearance-area, #clearance-type{
   margin-bottom: 0.5rem !important;
 }
+.mw-40vw{
+  min-width: 40vw !important;
+}
+
+.modal-box{
+  max-width: 41rem !important;
+}
+.m-top{
+  margin-top: -22px !important;
+}
+.toast-z-index{
+  z-index: 99999999 !important;
+}
+
+

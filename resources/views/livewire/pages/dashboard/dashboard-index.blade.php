@@ -15,19 +15,6 @@
   {{-- {{ auth()->user() }} --}}
   {{-- {{ auth()->user()->account_role }} --}}
 
-  {{-- @inject('clearance', 'App\Models\Clearance')
-
-  {{ $clearance->clearance_id }} --}}
-
-    <?php
-        use App\Models\Clearance;
-    ?>
-    {{-- {{ Clearance::on('iclearance_connection')->find() }} --}}
-    {{-- {{ Clearance::on('iclearance_connection')->where('is_open',1)->first() }} --}}
-    {{ Clearance::on('iclearance_connection')->where('is_open',1)->get('clearance_id'); }}
-
-  {{-- {{ auth()->user()->getRoleAttribute()->role_id }} --}}
-
   {{-- <div class="grid grid-cols-4 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <x-mary-stat title="Messages" value="44" icon="o-envelope" tooltip="Hello" />
 

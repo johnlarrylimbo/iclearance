@@ -40,6 +40,7 @@ class WireClearanceArea extends Component
   public $abbreviation;
   public $description;
   public $sort;
+  public $order_type_id;
   public $is_student_clearance_area;
   public $is_employee_clearance_area;
   public $is_clearance_area_default_cleared;
@@ -48,6 +49,7 @@ class WireClearanceArea extends Component
   public $edit_abbreviation;
   public $edit_description;
   public $edit_sort;
+  public $edit_order_type_id;
   public $edit_is_student_clearance_area;
   public $edit_is_employee_clearance_area;
   public $edit_is_clearance_area_default_cleared;
@@ -100,12 +102,19 @@ class WireClearanceArea extends Component
 		return $this->select_option_library_service->loadClearedNotClearedSelectOptions();
 	}
 
+  #[Computed]
+	// public function loadHealthClaimCategoryOptions()
+	public function order_type_options(){
+		return $this->select_option_library_service->loadOrderTypeOptions();
+	}
+
 	public function mount(){
 		// Initialize form fields
     $this->parent_clearance_area_id = 0;
 		$this->abbreviation = '';
     $this->description = '';
     $this->sort = 0;
+    $this->order_type_id = 0;
     $this->is_student_clearance_area = 0;
     $this->is_employee_clearance_area = 0;
     $this->is_clearance_area_default_cleared = 0;
@@ -117,6 +126,7 @@ class WireClearanceArea extends Component
 			'abbreviation' => 'required|string|max:25',
       'description' => 'required|string|max:512',
       'sort' => 'required',
+      'order_type_id' => 'required',
       'is_student_clearance_area' => 'required',
       'is_employee_clearance_area' => 'required',
       'is_clearance_area_default_cleared' => 'required'
@@ -131,8 +141,8 @@ class WireClearanceArea extends Component
 			$this->error('Record already exists.');
 		}
 		else{
-      $param = [  $this->parent_clearance_area_id, $this->abbreviation, $this->description, $this->sort, $this->is_student_clearance_area, $this->is_employee_clearance_area, $this->is_clearance_area_default_cleared, 0 ];
-      $sp_query = "EXEC pr_clearance_area_ins :parent_clearance_area_id, :abbreviation, :description, :sort, :is_student_clearance_area, :is_employee_clearance_area, :is_clearance_area_default_cleared, :result_id;";
+      $param = [  $this->parent_clearance_area_id, $this->abbreviation, $this->description, $this->sort, $this->order_type_id, $this->is_student_clearance_area, $this->is_employee_clearance_area, $this->is_clearance_area_default_cleared, 0 ];
+      $sp_query = "EXEC pr_clearance_area_ins :parent_clearance_area_id, :abbreviation, :description, :sort, :order_type_id, :is_student_clearance_area, :is_employee_clearance_area, :is_clearance_area_default_cleared, :result_id;";
       $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 			
       // Toast
@@ -148,6 +158,7 @@ class WireClearanceArea extends Component
     $this->reset(['abbreviation', 'abbreviation']);
     $this->reset(['description', 'description']);
     $this->reset(['sort', 'sort']);
+    $this->reset(['order_type_id', 'edit_sort']);
     $this->reset(['is_student_clearance_area', 'is_student_clearance_area']);
     $this->reset(['is_employee_clearance_area', 'is_employee_clearance_area']);
     $this->reset(['is_clearance_area_default_cleared', 'is_clearance_area_default_cleared']);
@@ -171,6 +182,7 @@ class WireClearanceArea extends Component
       $this->edit_abbreviation = $result->abbreviation;
       $this->edit_description = $result->label;
       $this->edit_sort = $result->sort;
+      $this->edit_order_type_id = $result->order_type_id;
       $this->edit_is_student_clearance_area = $result->is_student_clearance_area;
       $this->edit_is_employee_clearance_area = $result->is_employee_clearance_area;
       $this->edit_is_clearance_area_default_cleared = $result->default_cleared;
@@ -183,6 +195,7 @@ class WireClearanceArea extends Component
 			'edit_abbreviation' => 'required|string|max:25',
       'edit_description' => 'required|string|max:512',
       'edit_sort' => 'required',
+      'edit_order_type_id' => 'required',
       'edit_is_student_clearance_area' => 'required',
       'edit_is_employee_clearance_area' => 'required',
       'edit_is_clearance_area_default_cleared' => 'required'
@@ -198,8 +211,8 @@ class WireClearanceArea extends Component
 			$this->error('Record does not exists.');
 		}
 		else{
-      $param = [  $this->clearance_area_id, $this->edit_parent_clearance_area_id, $this->edit_abbreviation, $this->edit_description, $this->edit_sort, $this->edit_is_student_clearance_area, $this->edit_is_employee_clearance_area, $this->edit_is_clearance_area_default_cleared, 0 ];
-      $sp_query = "EXEC pr_clearance_area_by_id_upd :clearance_area_id, :parent_clearance_area_id, :abbreviation, :description, :sort, :is_student_clearance_area, :is_employee_clearance_area, :is_clearance_area_default_cleared, :result_id;";
+      $param = [  $this->clearance_area_id, $this->edit_parent_clearance_area_id, $this->edit_abbreviation, $this->edit_description, $this->edit_sort, $this->edit_order_type_id, $this->edit_is_student_clearance_area, $this->edit_is_employee_clearance_area, $this->edit_is_clearance_area_default_cleared, 0 ];
+      $sp_query = "EXEC pr_clearance_area_by_id_upd :clearance_area_id, :parent_clearance_area_id, :abbreviation, :description, :sort, :order_type_id, :is_student_clearance_area, :is_employee_clearance_area, :is_clearance_area_default_cleared, :result_id;";
       $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 			
       // Toast
@@ -216,6 +229,7 @@ class WireClearanceArea extends Component
     $this->reset(['edit_abbreviation', 'edit_abbreviation']);
     $this->reset(['edit_description', 'edit_description']);
     $this->reset(['edit_sort', 'edit_sort']);
+    $this->reset(['edit_order_type_id', 'edit_sort']);
     $this->reset(['edit_is_student_clearance_area', 'edit_is_student_clearance_area']);
     $this->reset(['edit_is_employee_clearance_area', 'edit_is_employee_clearance_area']);
     $this->reset(['edit_is_clearance_area_default_cleared', 'edit_is_clearance_area_default_cleared']);

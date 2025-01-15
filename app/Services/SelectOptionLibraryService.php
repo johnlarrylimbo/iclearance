@@ -114,5 +114,19 @@ class SelectOptionLibraryService extends Service
 			}
     }
 
+    public function loadOrderTypeOptions()
+    {
+        try {
+            $result = $this->sp
+                ->stored_procedure('pr_order_type_select_options')
+                ->stored_procedure_connection('iclearance_connection')
+                ->execute();
+
+            return $result->stored_procedure_result();
+        } catch (Exception $exception) {
+            throw new Exception('Error getting period type', 500, $exception);
+        }
+    }
+
     
 }

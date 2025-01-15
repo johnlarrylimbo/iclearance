@@ -35,21 +35,27 @@
 				@else
           @foreach ($this->clearance_area as $result)
             <tr class="fs-13 border-btm content-tr">
-              <td class="align-center">{{ $result->row_num }}</td>
-              <td class="align-left">{{ $result->parent_clearance_area_label }}</td>
-              <td class="align-left">{{ $result->label }} - [ {{ $result->abbreviation }} ]</td>
-              <td class="align-center">{{ $result->sort }}</td>
-              <td class="align-center">{{ $result->is_student_clearance_area }}</td>
-              <td class="align-center">{{ $result->is_employee_clearance_area }}</td>
-              <td class="align-center">{{ $result->default_cleared }}</td>
-              <td class="align-center">
+              <td class="align-center vertical-align-top">{{ $result->row_num }}</td>
+              <td class="align-left vertical-align-top">{{ $result->parent_clearance_area_label }}</td>
+              <td class="align-left vertical-align-top">
+                {{ $result->label }} - ( {{ $result->abbreviation }} )
+                @if($result->order_type_label != '')
+                  <br />
+                  [ {{ $result->order_type_label }} ]
+                @endif
+              </td>
+              <td class="align-center vertical-align-top">{{ $result->sort }}</td>
+              <td class="align-center vertical-align-top">{{ $result->is_student_clearance_area }}</td>
+              <td class="align-center vertical-align-top">{{ $result->is_employee_clearance_area }}</td>
+              <td class="align-center vertical-align-top">{{ $result->default_cleared }}</td>
+              <td class="align-center vertical-align-top">
                 @if($result->statuscode == 1000)
                   <x-mary-badge value="{{ $result->statuscode_label }}" class="badge-primary" />
                 @else
                   <x-mary-badge value="{{ $result->statuscode_label }}" class="badge-warning" />
                 @endif
               </td>
-              <td class="align-center">
+              <td class="align-center vertical-align-top">
                 <x-mary-button icon="o-pencil-square" 
                                 wire:click="openEditClearanceAreaModal({{ $result->clearance_area_id }})" 
                                 spinner 
@@ -98,6 +104,16 @@
 						placeholder-value="0"
 						hint="Select one, please."
 						wire:model="sort" />
+
+      <x-mary-select
+						label="Clearance Area Order Type"
+						:options="$this->order_type_options"
+						option-value="id"
+						option-label="name"
+						placeholder="Select a order type"
+						placeholder-value="0"
+						hint="Select one, please."
+						wire:model="order_type_id" />
       
       <x-mary-select
 						label="Is Student Clearance Area?"
@@ -165,6 +181,16 @@
 						placeholder-value="0"
 						hint="Select one, please."
 						wire:model="edit_sort" />
+
+      <x-mary-select
+						label="Clearance Area Order Type"
+						:options="$this->order_type_options"
+						option-value="id"
+						option-label="name"
+						placeholder="Select a order type"
+						placeholder-value="0"
+						hint="Select one, please."
+						wire:model="edit_order_type_id" />
       
       <x-mary-select
 						label="Is Student Clearance Area?"
