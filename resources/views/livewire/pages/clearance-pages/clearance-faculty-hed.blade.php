@@ -162,7 +162,7 @@
 
   <x-mary-modal wire:model="showEmployeeClearanceRecordModal" class="backdrop-blur" title="{{ $employee_clearance_title  }}" separator>
 
-    Note: Clearance area(s) with <strong>"Any" order type must be cleared first.</strong>
+    <div style="margin-bottom: 26px;" class="fs-14">Note: Clearance area(s) with <strong>"Any"</strong> order type must be cleared first.</div>
     <table width="100%" class="table mb-4 table-striped m-top" style="table-layout: fixed;">
       <thead>
         <tr class="fs-14 pink h-2rem">
