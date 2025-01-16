@@ -1,10 +1,9 @@
 
 <div class="py-12">
 
-  <x-mary-header title="HED Faculty Clearance" subtitle="HED Faculty Clearance result list">
+  <x-mary-header title="SSP Clearance" subtitle="Support service personnel clearance result list">
     <x-slot:actions>
       <x-mary-input icon="o-bolt" placeholder="Search..." wire:model.live="search"/>
-      {{-- <x-mary-button icon="o-plus" class="btn-primary" @click="$wire.addClearanceAreaModal = true" /> --}}
     </x-slot:actions>
   </x-mary-header>
 
@@ -112,7 +111,6 @@
     <x-mary-header>
       <x-slot:actions>
         <x-mary-input icon="o-bolt" placeholder="Search..." wire:model.live="search_employee"/>
-        {{-- <x-mary-button icon="o-plus" class="btn-primary" @click="$wire.addClearanceAreaModal = true" /> --}}
       </x-slot:actions>
     </x-mary-header>
 

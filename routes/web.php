@@ -64,4 +64,6 @@ require __DIR__.'/app_routes/permission_request_routes.php';
 
 require __DIR__.'/app_routes/clearance_faculty_hed_routes.php';
 
+require __DIR__.'/app_routes/clearance_support_service_personnel_routes.php';
+
 require __DIR__.'/auth.php';
