@@ -8,7 +8,7 @@
   </x-mary-header>
 
   <x-mary-card shadow separator>
-    
+
     <div class="my-4">
       {{ $this->clearance->links() }}
     </div>
@@ -17,11 +17,11 @@
       <thead>
         <tr class="fs-14 pink h-2rem">
           <th class="align-center wd-5">#</th>
-          <th class="align-center w-13">Clearance Type</th>
+          {{-- <th class="align-center w-13">Clearance Type</th> --}}
           <th class="align-center w-30">Description</th>
           <th class="align-center w-15">Period</th>
           <th class="align-center w-15">Status</th>
-          <th class="align-center w-30">Manage</th>
+          <th class="align-center wd-40">Manage</th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +33,7 @@
           @foreach ($this->clearance as $result)
             <tr class="fs-13 border-btm content-tr">
               <td class="align-center vertical-align-top">{{ $result->row_num }}</td>
-              <td class="align-left vertical-align-top"">{{ $result->clearance_type_label }}</td>
+              {{-- <td class="align-left vertical-align-top"">{{ $result->clearance_type_label }}</td> --}}
               <td class="align-left vertical-align-top"">
                 {{ $result->description }}<br />
                 {{ $result->clearance_code }}<br /><br />
@@ -61,25 +61,25 @@
               <td class="align-center vertical-align-top"">
                 @if($result->is_populated == 'Populated')
                 @else
-                  <x-mary-button icon="o-pencil-square" 
-                                  wire:click="openEditClearanceModal({{ $result->clearance_id }})" 
+                  <x-mary-button icon="o-pencil-square"
+                                  wire:click="openEditClearanceModal({{ $result->clearance_id }})"
                                   title="Edit clearance information."
-                                  spinner 
+                                  spinner
                                   class="btn-success btn-sm align-center" />&nbsp;
-                  <x-mary-button icon="m-numbered-list" 
-                                  wire:click="openAddClearanceAreaItemModal({{ $result->clearance_id }})" 
+                  <x-mary-button icon="m-numbered-list"
+                                  wire:click="openAddClearanceAreaItemModal({{ $result->clearance_id }})"
                                   title="Add clearance area item(s) information."
-                                  spinner 
+                                  spinner
                                   class="btn-success btn-sm align-center" />&nbsp;
-                  <x-mary-button icon="m-users" 
-                                  wire:click="openAddClearanceEmployeeModal({{ $result->clearance_id }})" 
+                  <x-mary-button icon="m-users"
+                                  wire:click="openAddClearanceEmployeeModal({{ $result->clearance_id }})"
                                   title="Enroll employee to clearance record."
-                                  spinner 
+                                  spinner
                                   class="btn-success btn-sm align-center" />&nbsp;
-                  <x-mary-button icon="o-inbox-arrow-down" 
-                                  wire:click="openPopulateClearanceEmployeeClearanceDetailModal({{ $result->clearance_id }})" 
+                  <x-mary-button icon="o-inbox-arrow-down"
+                                  wire:click="openPopulateClearanceEmployeeClearanceDetailModal({{ $result->clearance_id }})"
                                   title="Populate employee clearance(s)."
-                                  spinner 
+                                  spinner
                                   class="btn-primary btn-sm align-center" />&nbsp;
                 @endif
                 <x-mary-button icon="o-trash"
@@ -99,7 +99,7 @@
       {{ $this->clearance->links() }}
     </div>
 
-  </x-mary-card>    
+  </x-mary-card>
 
   <x-mary-modal wire:model="addSemesterClearanceModal" class="backdrop-blur">
     <x-mary-form wire:submit.prevent="save_semestral_clearance" no-separator>
@@ -137,7 +137,7 @@
 						placeholder-value="0"
 						hint="Select one, please."
 						wire:model="is_open" />
-   
+
       <x-slot:actions>
           <x-mary-button label="Cancel" @click="$wire.addSemesterClearanceModal = false"/>
           <x-mary-button label="Save Record" class="btn-primary" type="submit" spinner="save_semestral_clearance" />
@@ -182,7 +182,7 @@
 						placeholder-value="0"
 						hint="Select one, please."
 						wire:model="is_open" />
-   
+
       <x-slot:actions>
           <x-mary-button label="Cancel" @click="$wire.addAnnualClearanceModal = false"/>
           <x-mary-button label="Save Record" class="btn-primary" type="submit" spinner="save_annual_clearance" />
@@ -216,7 +216,7 @@
 					:options="$this->clearance_employee_select_options"/>
 
       <br /><br /><br /><br /><br /><br />
-      
+
 			<x-slot:actions>
 				<x-mary-button label="Cancel" @click="$wire.addClearanceEmployeeRecordModal = false"/>
 				<x-mary-button label="Save Record" class="btn-primary" type="submit" spinner="save_clearance_employee_record" />
@@ -271,7 +271,7 @@
 						placeholder-value="0"
 						hint="Select one, please."
 						wire:model="period_type_id" />
-   
+
       <x-slot:actions>
           <x-mary-button label="Cancel" @click="$wire.addClearancePeriodTypeModal = false"/>
           <x-mary-button label="Proceed" class="btn-primary" type="submit" spinner="save_period_type" />
@@ -291,12 +291,12 @@
 
   </x-mary-modal>
 
-  
+
 </div>
 
 
 
-    
+
 
 
 

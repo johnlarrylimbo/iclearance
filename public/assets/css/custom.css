@@ -55,6 +55,12 @@
 .w-30{
   width: 30% !important;
 }
+.wd-35 {
+    width: 35% !important;
+}
+.wd-40 {
+    width: 40% !important;
+}
 
 .h-40{
   height: 40px !important;
