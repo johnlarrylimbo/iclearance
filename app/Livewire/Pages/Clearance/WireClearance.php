@@ -384,7 +384,7 @@ class WireClearance extends Component
      	// Toast
 			$this->success('Clearance area item added successfully!');
 		}
-
+    $this->reset('clearance_id');
 		// Close the modal
 		$this->addClearanceAreaRecordModal  = false;
 	}
@@ -435,7 +435,7 @@ class WireClearance extends Component
      	// Toast
 			$this->success('Clearance employee item added successfully!');
 		}
-
+    $this->reset('clearance_id');
 		// Close the modal
 		$this->addClearanceEmployeeRecordModal  = false;
 	}
