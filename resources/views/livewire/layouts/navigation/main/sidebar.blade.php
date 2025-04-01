@@ -42,17 +42,17 @@
             <x-mary-menu-separator />
 
             @if(auth()->user()->hasRole(1))
-                <x-mary-menu-item title="Clearance Monitoring" icon="o-home" link="/monitoring" class="py-4" />
+                <x-mary-menu-item title="Employee Clearance(s)" icon="o-home" link="/clearance-management" class="py-4" />
                 <x-mary-menu-separator />
 
-                <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
+                {{-- <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
                     <x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
                     <x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
                     <x-mary-menu-item title="Support Service Personnel" icon="o-home" link="/ssp"/>
                     <x-mary-menu-item title="Maintenance" icon="o-home" link="/maintenance"/>
                     <x-mary-menu-item title="BED Student" icon="o-home" link="/bed-student"/>
-                </x-mary-menu-sub>
-                <x-mary-menu-separator />
+                </x-mary-menu-sub> --}}
+                {{-- <x-mary-menu-separator /> --}}
 
                 <x-mary-menu-sub title="Clearance Libraries" icon="o-cog-6-tooth" open>
                     <x-mary-menu-item title="Clearance Area" icon="o-home" link="/area" class="mt-3.5"/>
@@ -65,7 +65,7 @@
 
             @elseif(auth()->user()->hasRole(2))
 
-                <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
+                {{-- <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
 									@if(count(Clearance::on('iclearance_connection')->where('is_open',1)->where('clearance_type_id', 3)->get('clearance_type_id')) > 0)
 										<x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
 									@endif
@@ -81,15 +81,13 @@
 									@if(count(Clearance::on('iclearance_connection')->where('is_open',1)->where('clearance_type_id', 1)->get('clearance_type_id')) > 0)
 										<x-mary-menu-item title="BED Faculty" icon="o-home" link="/bed" />
 									@endif
-                </x-mary-menu-sub>
+                </x-mary-menu-sub> --}}
 
             @else
 
-
-
             @endif
 
-						<x-mary-menu-separator />
+						{{-- <x-mary-menu-separator /> --}}
 						<x-mary-menu-item title="Request Access Permission" icon="o-home" link="/request-access" class="py-4" />
 
             <x-mary-menu-separator />
