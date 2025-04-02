@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureURL();
         // $this->configureSocialite();
 
-        $this->registerMacroPaginator();
+        // $this->registerMacroPaginator();
     }
 
 
@@ -77,23 +77,23 @@ class AppServiceProvider extends ServiceProvider
      * Add a `paginate` macro to the Collection class
      * @return void
      */
-    private function registerMacroPaginator(): void
-    {
-        if (!Collection::hasMacro('paginate')) {
-            Collection::macro(
-                'paginate',
-                function ($perPage = 15, $page = null, $options = []) {
-                    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
-                    return (new LengthAwarePaginator(
-                        $this->forPage($page, $perPage),
-                        $this->count(),
-                        $perPage,
-                        $page,
-                        $options
-                    ))
-                        ->withPath('');
-                }
-            );
-        }
-    }
+    // private function registerMacroPaginator(): void
+    // {
+    //     if (!Collection::hasMacro('paginate')) {
+    //         Collection::macro(
+    //             'paginate',
+    //             function ($perPage = 15, $page = null, $options = []) {
+    //                 $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+    //                 return (new LengthAwarePaginator(
+    //                     $this->forPage($page, $perPage),
+    //                     $this->count(),
+    //                     $perPage,
+    //                     $page,
+    //                     $options
+    //                 ))
+    //                     ->withPath('');
+    //             }
+    //         );
+    //     }
+    // }
 }
