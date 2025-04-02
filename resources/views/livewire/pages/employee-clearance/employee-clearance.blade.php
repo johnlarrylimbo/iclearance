@@ -39,7 +39,7 @@
       <tbody>
         @if(count($this->employee_clearance_lst) == 0)
           <tr class="fs-13 border-btm content-tr">
-            <td class="align-center" colspan="9">No clearance record(s) found.</td>
+            <td class="align-center" colspan="7">No clearance record(s) found.</td>
           </tr>
 				@else
           @foreach ($this->employee_clearance_lst as $result)
