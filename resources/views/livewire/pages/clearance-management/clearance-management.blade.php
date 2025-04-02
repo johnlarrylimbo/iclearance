@@ -1,8 +1,8 @@
 <div>
   
-  <x-mary-header title="Employee Clearance Management" subtitle="Employee clearance management dashboard." >
+  <x-mary-header title="Clearance Management" subtitle="Clearance management dashboard." >
     <x-slot:actions>
-      <x-mary-input icon="o-bolt" placeholder="Search Employee..." wire:model.live="search"/>
+      <x-mary-input icon="o-bolt" placeholder="Search Clearance..." wire:model.live="search"/>
     </x-slot:actions>
   </x-mary-header>
 

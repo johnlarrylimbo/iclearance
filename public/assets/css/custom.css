@@ -161,4 +161,14 @@ svg{
   z-index: 99999999 !important;
 }
 
+.word-wrap{
+  word-wrap: break-word; /* Ensures long words break */
+  word-break: break-word; /* Prevents content overflow */
+  white-space: normal; /* Allows text wrapping */
+  overflow-wrap: break-word;
+  transform: rotate(322deg); /* Rotates text */
+  /* writing-mode: vertical-lr; Rotates text to vertical */
+  text-orientation: mixed; /* Ensures proper character alignment */
+}
+
 
