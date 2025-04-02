@@ -51,12 +51,13 @@
                 @endif
               </td>
               <td class="align-center vertical-align-top">
-                <x-mary-button icon="o-pencil-square" 
-                                wire:click="openEditClearanceAreaModal({{ $result->clearance_id }})" 
+                {{-- <a href="/clearance-detail/{{ $result->clearance_id }}" class="btn-success btn-sm align-center">{{ svg('heroicon-s-users') }}</a> --}}
+                <x-mary-button icon="o-user-group" 
+                                wire:click="openClearanceDetailWindow({{ $result->clearance_id }})" 
                                 spinner 
                                 class="btn-success btn-sm align-center" />&nbsp;
-                <x-mary-button icon="o-trash"
-                                wire:click="openDeleteClearanceAreaModal({{ $result->clearance_id }})"
+                <x-mary-button icon="s-user-plus"
+                                wire:click="openAddClearanceDetailWindow({{ $result->clearance_id }})"
                                 class="btn-error btn-sm align-center"
                                 spinner
                                 />

@@ -50,6 +50,12 @@ class WireClearanceManagement extends Component
 		// Initialize form fields
 	}
 
+	public function openClearanceDetailWindow($clearance_id)
+    { 
+    //   return redirect()->to('/clearance-detail');
+	$this->redirect(route('employee.clearance', ['clearance_id' => $clearance_id]), navigate: false);
+    }
+
 
 	public function render()
 	{
