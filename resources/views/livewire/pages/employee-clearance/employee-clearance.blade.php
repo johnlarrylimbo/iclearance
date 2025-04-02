@@ -1,10 +1,20 @@
 <div>
   
-  <x-mary-header title="Employee Clearance" subtitle="Employee clearance management dashboard." >
-    <x-slot:actions>
-      <x-mary-input icon="o-bolt" placeholder="Search Employee..." wire:model.live="search"/>
-    </x-slot:actions>
-  </x-mary-header>
+  @foreach ($this->employee_clearance_detail as $employee_clearance_detail)
+    @if(count($this->employee_clearance_detail) == 0)
+      <x-mary-header title="Employee Clearance" subtitle="Employee clearance management dashboard." class="fs-27">
+        <x-slot:actions>
+          <x-mary-input icon="o-bolt" placeholder="Search Employee..." wire:model.live="search"/>
+        </x-slot:actions>
+      </x-mary-header>
+    @else
+      <x-mary-header title="{{ $employee_clearance_detail->clearance_description }}" subtitle="{{ $employee_clearance_detail->clearance_description }} management dashboard." class="fs-27">
+        <x-slot:actions>
+          <x-mary-input icon="o-bolt" placeholder="Search Employee..." wire:model.live="search"/>
+        </x-slot:actions>
+      </x-mary-header>
+    @endif
+  @endforeach
 
   <x-mary-card shadow separator>
 

@@ -51,6 +51,13 @@ class WireEmployeeClearance extends Component
 
 	#[Computed]
 	// public function loadHealthClaimCategoryOptions()
+	public function employee_clearance_detail(){
+		$employee_clearance_detail = $this->employee_clearance_service->EmployeeClearanceByClearanceId($this->clearance_id);
+		return $employee_clearance_detail;
+	}
+
+	#[Computed]
+	// public function loadHealthClaimCategoryOptions()
 	public function clearance_area_lst(){
 		return $this->employee_clearance_service->loadEmployeeClearanceAreaByClearanceIdLst($this->clearance_id);
 	}

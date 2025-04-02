@@ -16,6 +16,22 @@ class EmployeeClearanceService extends Service
 	}
 	//instantiate brand model class
 
+  public function EmployeeClearanceByClearanceId(int $clearance_id_value){
+		try {
+      $clearance_id = $clearance_id_value ?? 0;    
+				$result = $this->sp
+						->stored_procedure('pr_employee_clearance_by_clearance_id_sel')
+						->stored_procedure_connection('iclearance_connection')
+            ->stored_procedure_params([':clearance_id'])
+						->stored_procedure_values([$clearance_id])
+						->execute();
+
+				return $result->stored_procedure_result();
+		} catch (Exception $exception) {
+				throw new Exception('Error getting employee clearance list', 500, $exception);
+		}
+	}
+
 	public function loadEmployeeClearanceLst(int $clearance_id_value){
 		try {
       $clearance_id = $clearance_id_value ?? 0;    
