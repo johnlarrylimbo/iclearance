@@ -57,7 +57,7 @@
                                 spinner 
                                 class="btn-success btn-sm align-center" />&nbsp;
                 <x-mary-button icon="s-user-plus"
-                                wire:click="openAddClearanceDetailWindow({{ $result->clearance_id }})"
+                                wire:click="openClearanceEmployeeEnrollmentWindow({{ $result->clearance_id }})"
                                 class="btn-error btn-sm align-center"
                                 spinner
                                 />
