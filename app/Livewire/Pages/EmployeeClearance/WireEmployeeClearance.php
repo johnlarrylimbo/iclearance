@@ -11,6 +11,8 @@ use Livewire\Attributes\Url;
 use Illuminate\Support\Facades\DB;
 
 use App\Services\EmployeeClearanceService;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EmployeeClearanceAreaStatusUpdateMailer;
 
 use Livewire\WithPagination;
 use Mary\Traits\Toast;
@@ -82,6 +84,17 @@ class WireEmployeeClearance extends Component
 		// $this->loadRecords();
 		return $this->employee_clearance_service->UpdateEmployeeClearanceAreaStatus($clearance_detail_id, $clearance_area_id, $status);
 		// dd("Input updated: " . $clearance_detail_id);
+
+		// $details = [
+		// 	'name' => 'John Larry',
+		// 	'email' => 'jlimbo@uic.edu.ph',
+		// 	'message' => 'Test message only.',
+		// ];
+
+		// Mail::to('jlimbo@uic.edu.ph')->send(new EmployeeClearanceAreaStatusUpdateMailer($details));
+
+		// // session()->flash('success', 'Email sent successfully!');
+		// $this->reset();
 
 		$this->employee_clearance_lst();
 	}
