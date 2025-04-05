@@ -65,6 +65,10 @@
 
             @elseif(auth()->user()->hasRole(2))
 
+							<x-mary-menu-item title="Employee Clearance(s)" icon="o-home" link="/individual-employee-clearance" class="py-4" />
+
+							<x-mary-menu-separator />
+
                 {{-- <x-mary-menu-sub title="Clearance(s)" icon="o-cog-6-tooth" open>
 									@if(count(Clearance::on('iclearance_connection')->where('is_open',1)->where('clearance_type_id', 3)->get('clearance_type_id')) > 0)
 										<x-mary-menu-item title="HED Faculty" icon="o-home" link="/hed" class="mt-3.5"/>
