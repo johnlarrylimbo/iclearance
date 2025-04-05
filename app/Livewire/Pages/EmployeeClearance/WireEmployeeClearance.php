@@ -24,8 +24,11 @@ class WireEmployeeClearance extends Component
   use Toast;
   use WithPagination;
 
-	#[Url(as: 'clearance_id')]
+	// #[Url(as: 'clearance_id')]
 	public $clearance_id = 0;
+
+	// $clearanceId = session('clearance_id');
+
 
 	protected $employee_clearance_service;
 
@@ -39,6 +42,22 @@ class WireEmployeeClearance extends Component
 		$this->employee_clearance_service = $employee_clearance_service;
 	}
 
+	public function mount(){
+		// Initialize form fields
+		if (session()->has('clearance_id')) {
+			$this->clearance_id = session('clearance_id');
+		} else {
+				// Set default value or take an action
+				$this->clearance_id = 0; // or some default value
+		}
+	}
+
+	public function updatedSearch()
+	{
+			// Reset pagination when the search term is updated
+			$this->resetPage();
+	}
+
 	// Load records from the database
 	#[Computed]
 	public function employee_clearance_lst(){
@@ -46,7 +65,7 @@ class WireEmployeeClearance extends Component
       $employee_clearance_lst = $this->employee_clearance_service->loadEmployeeClearanceLst($this->clearance_id)->paginate(10);
 		  return $employee_clearance_lst;
     }else{
-      $employee_clearance_lst = $this->employee_clearance_service->searchEmployeeClearanceLstByClearanceIdKeyword($this->clearance_id, $this->search)->paginate(10);
+      $employee_clearance_lst = $this->employee_clearance_service->searchEmployeeClearanceLstByClearanceIdKeyword(1, $this->search)->paginate(10);
 		  return $employee_clearance_lst;
     }
 	}
@@ -71,9 +90,7 @@ class WireEmployeeClearance extends Component
 	}
 
 
-	public function mount(){
-		// Initialize form fields
-	}
+	
 
 	public function update_area_status($clearance_detail_id, $clearance_area_id, $status){
 		// DB::select('CALL sp_brand_del(?)', [ $id ]);

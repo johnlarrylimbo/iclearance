@@ -39,11 +39,12 @@
       <tbody>
         @if(count($this->employee_clearance_lst) == 0)
           <tr class="fs-13 border-btm content-tr">
-            @if(count($this->clearance_area_lst) == 0)
-              <td class="align-center" colspan="5">No clearance record(s) found.</td>
+            <td class="align-center" colspan="5">No clearance area record(s) found.</td>
+            {{-- @if(count($this->clearance_area_lst) == 0)
+              <td class="align-center" colspan="5">No clearance area record(s) found.</td>
             @else
-              <td class="align-center" colspan="{{ count($this->clearance_area_lst) + 2 }}">No clearance record(s) found.</td>
-            @endif
+              <td class="align-center" colspan="{{ count($this->clearance_area_lst) + 2 }}">No clearance area record(s) found.</td>
+            @endif --}}
           </tr>
 				@else
           @foreach ($this->employee_clearance_lst as $result)

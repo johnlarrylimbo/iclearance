@@ -82,6 +82,24 @@ class EmployeeClearanceService extends Service
 		}
 	}
 
+	public function searchloadEmployeeClearanceAreaByClearanceIdLst(int $clearance_id_value, string $search_query)
+	{
+		try {
+      $clearance_id = $clearance_id_value ?? 0;
+			$search = $search_query ?? '';       
+				$result = $this->sp
+									->stored_procedure('pr_employee_clearance_area_by_clearance_id_keyword_lst')
+									->stored_procedure_connection('iclearance_connection')
+									->stored_procedure_params([':clearance_id, :keyword'])
+									->stored_procedure_values([$clearance_id, $search])
+									->execute();
+
+				return $result->stored_procedure_result();
+		} catch (Exception $exception) {
+				throw new Exception('Error getting clearance area options', 500, $exception);
+		}
+	}
+
   public function loadedEmployeeClearanceAreaByClearanceId(int $clearance_id_value){
 		try {
       $clearance_id = $clearance_id_value ?? 0;    

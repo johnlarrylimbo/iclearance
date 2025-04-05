@@ -52,7 +52,9 @@ class WireClearanceManagement extends Component
 
 	public function openClearanceDetailWindow($clearance_id)
 	{ 
-		$this->redirect(route('employee.clearance', ['clearance_id' => $clearance_id]), navigate: false);
+		session()->put('clearance_id', $clearance_id);
+		// $this->redirect(route('employee.clearance', ['clearance_id' => $clearance_id]), navigate: false);
+		$this->redirect(route('employee.clearance'));
 	}
 
 	public function openClearanceEmployeeEnrollmentWindow($clearance_id)
