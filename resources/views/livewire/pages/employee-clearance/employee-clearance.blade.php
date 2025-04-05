@@ -39,7 +39,6 @@
       <tbody>
         @if(count($this->employee_clearance_lst) == 0)
           <tr class="fs-13 border-btm content-tr">
-            <td class="align-center" colspan="5">No clearance area record(s) found.</td>
             @if(count($this->clearance_area_lst) == 0)
               <td class="align-center" colspan="5">No clearance record(s) found.</td>
             @else
