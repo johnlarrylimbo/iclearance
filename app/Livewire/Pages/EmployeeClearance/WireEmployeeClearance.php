@@ -65,7 +65,7 @@ class WireEmployeeClearance extends Component
       $employee_clearance_lst = $this->employee_clearance_service->loadEmployeeClearanceLst($this->clearance_id)->paginate(10);
 		  return $employee_clearance_lst;
     }else{
-      $employee_clearance_lst = $this->employee_clearance_service->searchEmployeeClearanceLstByClearanceIdKeyword(1, $this->search)->paginate(10);
+      $employee_clearance_lst = $this->employee_clearance_service->searchEmployeeClearanceLstByClearanceIdKeyword($this->clearance_id, $this->search)->paginate(10);
 		  return $employee_clearance_lst;
     }
 	}
