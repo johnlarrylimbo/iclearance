@@ -127,6 +127,13 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'transaction' => [
+            'driver' => 'single',
+						// 'tap' => [SimpleFormatter::class],
+						'path' => storage_path('logs/transaction.log'),
+						'level' => 'debug'
+        ],
+
     ],
 
 ];
