@@ -59,6 +59,12 @@ class WireIndividualEmployeeClearance extends Component
 	// }
 
 	// Load records from the database
+
+	public function openViewIndividualEmployeeClearancesWindow($employee_id)
+	{ 
+		session()->put('employee_id', $employee_id);
+		$this->redirect(route('employee.view_individual_clearance'));
+	}
 	
 
 

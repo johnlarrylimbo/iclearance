@@ -39,7 +39,6 @@
               <td class="align-center vertical-align-top">{{ $result->email_address }}</td>
               <td class="align-center vertical-align-top">{{ $result->department_code }}</td>
               <td class="align-center vertical-align-top">
-                {{-- <a href="/clearance-detail/{{ $result->clearance_id }}" class="btn-success btn-sm align-center">{{ svg('heroicon-s-users') }}</a> --}}
                 <x-mary-button icon="o-user-group" 
                                 wire:click="populate_employee_clearance_area({{ $result->employee_id }})" 
                                 spinner 

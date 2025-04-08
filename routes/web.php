@@ -74,4 +74,6 @@ require __DIR__.'/app_routes/clearance_employee_enrollment_routes.php';
 
 require __DIR__.'/app_routes/individual_employee_clearance_routes.php';
 
+require __DIR__.'/app_routes/view_individual_employee_clearance_routes.php';
+
 require __DIR__.'/auth.php';
