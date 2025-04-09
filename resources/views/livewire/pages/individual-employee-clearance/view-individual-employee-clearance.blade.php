@@ -1,9 +1,10 @@
 <div>
   
   <x-mary-header title="Employee Clearance(s)" subtitle="Employee clearance list." class="fs-27" style="margin-bottom:5px !important;">
-    {{-- <x-slot:actions>
-      <x-mary-input icon="o-bolt" placeholder="Search Employee..." wire:model.live="search"/>
-    </x-slot:actions> --}}
+    <x-slot:actions>
+      {{-- <x-mary-input icon="o-bolt" placeholder="Search Employee..." wire:model.live="search"/> --}}
+      <a href="javascript:history.back()" class="fs-16">← Go Back</a>
+    </x-slot:actions>
   </x-mary-header>
    
   {{-- {{ session('employee_id') }} --}}

@@ -10,6 +10,7 @@ use Livewire\Attributes\Computed;
 use Illuminate\Support\Facades\DB;
 
 use App\Services\PermissionRequestService;
+use App\Services\SelectOptionLibraryService;
 
 use Livewire\WithPagination;
 use Mary\Traits\Toast;
@@ -25,21 +26,26 @@ class WirePermissionRequest extends Component
 	use Toast;
 
 	protected $permission_request_service;
+	protected $select_option_library_service;
 
 	public bool $approveAccessPermissionRequestModal = false;
 	public bool $disapproveAccessPermissionRequestModal = false;
 
 	public $access_permission_request_id;
 	public $clearance_area_id;
+	public $access_permission_department_id;
+	public $granter_id;
   public $edit_clearance_area_id;	
 
 	public $search;	
 
 	public function boot(
 		PermissionRequestService $permission_request_service,
+		SelectOptionLibraryService $select_option_library_service,
 	)
 	{
 		$this->permission_request_service = $permission_request_service;
+		$this->select_option_library_service = $select_option_library_service;
 	}
 
 	// Load records from the database
@@ -56,8 +62,16 @@ class WirePermissionRequest extends Component
 		}
 	}
 
+	#[Computed]
+	// public function loadHealthClaimCategoryOptions()
+	public function clearance_access_permission_department_options(){
+		return $this->select_option_library_service->loadClearanceAccessPermissionDepartmentOptions();
+	}
+
 	public function mount(){
 		// Initialize form fields
+		$this->access_permission_department_id = 0;
+		$this->granter_id = 0;
 	}
 
   public function openEditAccessPermissionRequestApprovedModal(int $access_permission_request_id){
@@ -66,8 +80,14 @@ class WirePermissionRequest extends Component
 	}
 
   public function approve_access_permission_request($access_permission_request_id){
-    $param = [  $access_permission_request_id, auth()->user()->user_account_id, 0 ];
-    $sp_query = "EXEC pr_access_permission_request_approve_by_id :access_permission_request_id, :user_account_id, :result_id;";
+
+		// Validation and saving logic
+		$this->validate([
+      'access_permission_department_id' => 'required|not_in:0'
+		]);
+
+    $param = [  $access_permission_request_id, $this->access_permission_department_id, auth()->user()->user_account_id, 0 ];
+    $sp_query = "EXEC pr_access_permission_request_approve_by_id :access_permission_request_id, :access_permission_department_id, :user_account_id, :result_id;";
     $result = DB::connection('iclearance_connection')->select($sp_query, $param);
 		
 		// Toast

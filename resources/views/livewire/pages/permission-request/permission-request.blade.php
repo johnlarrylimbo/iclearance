@@ -70,8 +70,18 @@
 
 
   <x-mary-modal wire:model="approveAccessPermissionRequestModal" class="backdrop-blur" title="Approval Confirmation" separator>
-
     <p>Are you sure want to approved this clearance access permission request?</p>
+    <br />
+    {{ auth()->user()->user_account_id }}
+    <x-mary-select
+						label="Clearance Department to be Granted Access"
+						:options="$this->clearance_access_permission_department_options"
+						option-value="id"
+						option-label="name"
+						placeholder="Select a clearance department to be granted access"
+						placeholder-value="0"
+						hint="Select one, please."
+						wire:model="access_permission_department_id" />
 
     <x-slot:actions>
         <x-mary-button label="Cancel" wire:click="approveAccessPermissionRequestModal = false" />

@@ -35,8 +35,10 @@ class WireAccessPermission extends Component
 	public $access_permission_request_id;
 
 	public $clearance_area_id;
+	public $access_permission_department_id;
 
   public $edit_clearance_area_id;	
+	public $edit_access_permission_department_id;	
 
 	public function boot(
 		AccessPermissionService $access_permission_service,
@@ -61,9 +63,16 @@ class WireAccessPermission extends Component
 		return $this->select_option_library_service->loadClearanceAreaItemSelectOptions();
 	}
 
+	#[Computed]
+	// public function loadHealthClaimCategoryOptions()
+	public function clearance_access_permission_department_options(){
+		return $this->select_option_library_service->loadClearanceAccessPermissionDepartmentOptions();
+	}
+
 	public function mount(){
 		// Initialize form fields
     $this->clearance_area_id = 0;
+		$this->access_permission_department_id = 0;
 	}
 
   public function save(){
