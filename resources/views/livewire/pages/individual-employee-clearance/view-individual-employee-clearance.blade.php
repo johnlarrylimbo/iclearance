@@ -28,7 +28,8 @@
           @foreach ($this->employee_active_clearance_lst as $employee_active_clearance_lst)
 
             <x-mary-tab name="{{ $employee_active_clearance_lst->clearance_lst_num }}" label="{{ $employee_active_clearance_lst->clearance_description }}" icon="s-folder">
-                <div>{{ $employee_active_clearance_lst->clearance_description }}</div><br />
+                <div class="clearance-head-div">{{ $employee_active_clearance_lst->clearance_description }}</div>
+                <div class="instruction-div">Instruction: Please <strong>check</strong> the checkbox to clear/unclear clearance area.</div>
                 <table width="100%">
                   <tr>
                     <th class="th-uic-pink-14">#</th>

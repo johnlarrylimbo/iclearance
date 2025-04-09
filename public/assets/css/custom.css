@@ -234,3 +234,14 @@ svg{
   display: block !important;
 }
 
+.instruction-div{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.clearance-head-div{
+  font-size: 25px !important;
+  font-weight: bold;
+}
+
