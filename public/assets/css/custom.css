@@ -174,7 +174,7 @@ svg{
   word-break: break-word; /* Prevents content overflow */
   white-space: normal; /* Allows text wrapping */
   overflow-wrap: break-word;
-  transform: rotate(322deg); /* Rotates text */
+  transform: rotate(359deg); /* Rotates text */
   /* writing-mode: vertical-lr; Rotates text to vertical */
   text-orientation: mixed; /* Ensures proper character alignment */
 }
