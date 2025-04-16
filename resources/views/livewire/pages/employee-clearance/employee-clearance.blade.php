@@ -31,7 +31,7 @@
             <th class="align-center" colspan="5">No available assigned clearance area</th>
           @else
             @foreach ($this->clearance_area_lst as $clearance_area_lst)
-              <th class="align-center wd-10 word-wrap vertical-align-top">{{ $clearance_area_lst->clearance_area_description }}</th>
+              <th class="align-center wd-10 word-wrap vertical-align-top">{{ $clearance_area_lst->clearance_area_abbreviation }}</th>
             @endforeach
           @endif
         </tr>
