@@ -79,8 +79,8 @@
 				<x-mary-button label="Populate Clearance Area Detail" class="btn-primary" type="submit" spinner="populate_clearance_area_details" />
 			</x-slot:actions>
 
-	</x-mary-form>
-</x-mary-modal>
+    </x-mary-form>
+  </x-mary-modal>
 
 
 </div>
