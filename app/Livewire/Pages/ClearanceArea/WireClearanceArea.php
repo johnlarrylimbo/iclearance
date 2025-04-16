@@ -65,6 +65,24 @@ class WireClearanceArea extends Component
     $this->select_option_library_service = $select_option_library_service;
 	}
 
+  public function mount(){
+		// Initialize form fields
+    $this->parent_clearance_area_id = 0;
+		$this->abbreviation = '';
+    $this->description = '';
+    $this->sort = 0;
+    $this->order_type_id = 0;
+    $this->is_student_clearance_area = 0;
+    $this->is_employee_clearance_area = 0;
+    $this->is_clearance_area_default_cleared = 0;
+	}
+
+  public function updatedSearch()
+	{
+			// Reset pagination when the search term is updated
+			$this->resetPage();
+	}
+
 	// Load records from the database
 	#[Computed]
 	// public function loadRecords
@@ -106,18 +124,6 @@ class WireClearanceArea extends Component
 	// public function loadHealthClaimCategoryOptions()
 	public function order_type_options(){
 		return $this->select_option_library_service->loadOrderTypeOptions();
-	}
-
-	public function mount(){
-		// Initialize form fields
-    $this->parent_clearance_area_id = 0;
-		$this->abbreviation = '';
-    $this->description = '';
-    $this->sort = 0;
-    $this->order_type_id = 0;
-    $this->is_student_clearance_area = 0;
-    $this->is_employee_clearance_area = 0;
-    $this->is_clearance_area_default_cleared = 0;
 	}
 
   public function save(){
