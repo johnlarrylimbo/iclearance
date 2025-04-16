@@ -1,4 +1,4 @@
-<div>
+<div class="py-12">
   
   <x-mary-header title="Clearance Employee Enrollment" subtitle="Employee clearance management dashboard." >
     <x-slot:actions>
