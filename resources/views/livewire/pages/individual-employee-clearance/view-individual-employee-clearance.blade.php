@@ -37,6 +37,7 @@
                     <th class="th-uic-pink-14">Status</th>
                     <th class="th-uic-pink-14">Cleared By</th>
                     <th class="th-uic-pink-14">Date Cleared</th>
+                    <th class="th-uic-pink-14">Requisite Area</th>
                   </tr>
                   @foreach ($this->employee_active_clearance_detail_lst as $employee_active_clearance_detail_lst)
                     @if($employee_active_clearance_detail_lst->clearance_detail_id == $employee_active_clearance_lst->clearance_detail_id)
@@ -170,6 +171,13 @@
                         </td>
                         <td class="align-center">{{ $employee_active_clearance_detail_lst->cleared_by_signature }}</td>
                         <td class="align-center">{{ $employee_active_clearance_detail_lst->datetime_cleared }}</td>
+                        <td class="align-center">
+                          @if($employee_active_clearance_detail_lst->clearance_requisite_area == '')
+                            -
+                          @else
+                            {{ $employee_active_clearance_detail_lst->clearance_requisite_area }}
+                          @endif
+                        </td>
                       </tr>
                     @endif
                   @endforeach
