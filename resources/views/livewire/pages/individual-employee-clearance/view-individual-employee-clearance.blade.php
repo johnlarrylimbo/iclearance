@@ -43,30 +43,121 @@
                       <tr class="tr-border-bottom-pink h-35 custom-tr fs-14">
                         <td class="text-center align-middle custom-td">
                           @if($employee_active_clearance_detail_lst->clearance_type_id == 1)
-                            <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                          {{-- Faculty BED --}}
+                            @if($employee_active_clearance_detail_lst->is_bed == 0) 
+                              <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                :disabled="$employee_active_clearance_detail_lst->is_bed == 0"
+                                label-class="custom-label-class"/>
+                            @else
+                              @if($employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_requisite') 
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  label-class="custom-label-class"/>
+                              @else
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  :disabled="$employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_cleared'"
+                                  label-class="custom-label-class"/>
+                              @endif
+                            @endif
+                            {{-- <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
                               :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
                               :disabled="$employee_active_clearance_detail_lst->is_bed == 0"
-                              label-class="custom-label-class"/>
+                              label-class="custom-label-class"/> --}}
                           @elseif($employee_active_clearance_detail_lst->clearance_type_id == 2)
+                          {{-- Student Clearance --}}
+                            @if($employee_active_clearance_detail_lst->is_student_bed == 0) 
                               <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
                                 :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
                                 :disabled="$employee_active_clearance_detail_lst->is_student_bed == 0"
                                 label-class="custom-label-class"/>
-                          @elseif($employee_active_clearance_detail_lst->clearance_type_id == 3)
+                            @else
+                              @if($employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_requisite') 
                                 <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
                                   :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
-                                  :disabled="$employee_active_clearance_detail_lst->is_hed == 0"
                                   label-class="custom-label-class"/>
-                          @elseif($employee_active_clearance_detail_lst->clearance_type_id == 4)
+                              @else
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  :disabled="$employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_cleared'"
+                                  label-class="custom-label-class"/>
+                              @endif
+                            @endif
+                              {{-- <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                :disabled="$employee_active_clearance_detail_lst->is_student_bed == 0"
+                                label-class="custom-label-class"/> --}}
+                          @elseif($employee_active_clearance_detail_lst->clearance_type_id == 3)
+                          {{-- Faculty HED --}}
+                            @if($employee_active_clearance_detail_lst->is_hed == 0) 
+                              <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                :disabled="$employee_active_clearance_detail_lst->is_hed == 0"
+                                label-class="custom-label-class"/>
+                            @else
+                              @if($employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_requisite') 
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  label-class="custom-label-class"/>
+                              @else
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  :disabled="$employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_cleared'"
+                                  label-class="custom-label-class"/>
+                              @endif
+                            @endif
+                                {{-- <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  :disabled="$employee_active_clearance_detail_lst->is_hed == 0"
+                                  label-class="custom-label-class"/> --}}
+                          @elseif($employee_active_clearance_detail_lst->clearance_type_id == 4) 
+                          {{-- ssp clearance --}}
+                            @if($employee_active_clearance_detail_lst->is_ssp == 0) 
+                              <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                :disabled="$employee_active_clearance_detail_lst->is_ssp == 0"
+                                label-class="custom-label-class"/>
+                            @else
+                              @if($employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_requisite') 
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  label-class="custom-label-class"/>
+                              @else
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  :disabled="$employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_cleared'"
+                                  label-class="custom-label-class"/>
+                              @endif
+                            @endif
+                          @elseif($employee_active_clearance_detail_lst->clearance_type_id == 56)
+                            {{-- Maintenance HED --}}
+                              @if($employee_active_clearance_detail_lst->is_admin == 0) 
+                                <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                  :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                  :disabled="$employee_active_clearance_detail_lst->is_admin == 0"
+                                  label-class="custom-label-class"/>
+                              @else
+                                @if($employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_requisite') 
                                   <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
                                     :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
-                                    :disabled="$employee_active_clearance_detail_lst->is_ssp == 0"
                                     label-class="custom-label-class"/>
-                          @else
+                                @else
+                                  <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                    :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                    :disabled="$employee_active_clearance_detail_lst->requisite_cleared_remarks == 'not_cleared'"
+                                    label-class="custom-label-class"/>
+                                @endif
+                              @endif
+                                  {{-- <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
+                                    :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
+                                    :disabled="$employee_active_clearance_detail_lst->is_hed == 0"
+                                    label-class="custom-label-class"/> --}}
+                          {{-- @else
                             <x-mary-checkbox wire:change="update_clearance_detail_status({{ $employee_active_clearance_detail_lst->clearance_detail_area_id }},{{ $employee_active_clearance_detail_lst->is_cleared }})" 
                               :checked="$employee_active_clearance_detail_lst->is_cleared == 1"
                               disabled="disabled"
-                              label-class="custom-label-class"/>
+                              label-class="custom-label-class"/> --}}
                           @endif
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;{{ $employee_active_clearance_detail_lst->clearance_area_label }}</td>

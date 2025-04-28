@@ -17,7 +17,7 @@
       <thead>
         <tr class="fs-14 pink h-2rem">
           <th class="align-center wd-5">#</th>
-          <th class="align-center w-15">Parent Area</th>
+          <th class="align-center w-15">Requisite Area</th>
           <th class="align-center w-30">Description</th>
           <th class="align-center wd-5">Sort</th>
           <th class="align-center w-10">Student<br />Area?</th>
@@ -36,7 +36,7 @@
           @foreach ($this->clearance_area as $result)
             <tr class="fs-13 border-btm content-tr">
               <td class="align-center vertical-align-top">{{ $result->row_num }}</td>
-              <td class="align-left vertical-align-top">{{ $result->parent_clearance_area_label }}</td>
+              <td class="align-left vertical-align-top">{{ $result->requisite_clearance_area_label }}</td>
               <td class="align-left vertical-align-top">
                 {{ $result->label }} - ( {{ $result->abbreviation }} )
                 @if($result->order_type_label != '')
