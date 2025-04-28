@@ -107,11 +107,11 @@ new #[Layout('layouts.guest')] class extends Component
 
                         <x-slot:actions>
                             <div class="flex items-center justify-evenly">
-                                @if (Route::has('password.request'))
+                                {{-- @if (Route::has('password.request'))
                                     <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
                                         {{ __('Forgot your password?') }}
                                     </a>
-                                @endif
+                                @endif --}}
                                 <div class="ms-3">
                                     <x-mary-button label="LOG IN" type="submit" spinner="login" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"/>
                                 </div>
