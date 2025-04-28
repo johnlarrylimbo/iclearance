@@ -29,7 +29,10 @@
 
             <x-mary-tab name="{{ $employee_active_clearance_lst->clearance_lst_num }}" label="{{ $employee_active_clearance_lst->clearance_description }}" icon="s-folder">
                 <div class="clearance-head-div">{{ $employee_active_clearance_lst->clearance_description }}</div>
-                <div class="instruction-div">Instruction: Please <strong>check</strong> the checkbox to clear/unclear clearance area.</div>
+                <div class="instruction-div">
+                  <strong>Instruction:</strong> <br />1) Please <strong>check</strong> the checkbox to clear/unclear clearance area.<br />
+                  2) Areas with prerequisites will be enabled once their required areas are cleared.
+                </div>
                 <table width="100%">
                   <tr>
                     <th class="th-uic-pink-14">#</th>
@@ -37,7 +40,7 @@
                     <th class="th-uic-pink-14">Status</th>
                     <th class="th-uic-pink-14">Cleared By</th>
                     <th class="th-uic-pink-14">Date Cleared</th>
-                    <th class="th-uic-pink-14">Requisite Area</th>
+                    <th class="th-uic-pink-14">Pre-requisite Area</th>
                   </tr>
                   @foreach ($this->employee_active_clearance_detail_lst as $employee_active_clearance_detail_lst)
                     @if($employee_active_clearance_detail_lst->clearance_detail_id == $employee_active_clearance_lst->clearance_detail_id)
