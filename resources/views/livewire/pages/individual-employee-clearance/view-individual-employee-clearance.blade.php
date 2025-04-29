@@ -164,7 +164,7 @@
                               label-class="custom-label-class"/> --}}
                           @endif
                         </td>
-                        <td>&nbsp;&nbsp;&nbsp;{{ $employee_active_clearance_detail_lst->clearance_area_label }}</td>
+                        <td>{{ $employee_active_clearance_detail_lst->clearance_area_label }}</td>
                         <td class="align-center">
                           @if($employee_active_clearance_detail_lst->is_cleared == 0)
                             <x-mary-badge value="{{ $employee_active_clearance_detail_lst->area_statuscode_label }}" class="badge-warning" />
