@@ -12,8 +12,8 @@
   </x-mary-header>
 
   {{-- {{ auth()->user()->hasClearanceAreaRole(1) }}--}}
-  {{-- {{ auth()->user() }} --}}
-  {{-- {{ auth()->user()->account_role }} --}}
+  {{-- {{ auth()->user() }}
+  {{ auth()->user()->account_role }} --}}
 
   {{-- <div class="grid grid-cols-4 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <x-mary-stat title="Messages" value="44" icon="o-envelope" tooltip="Hello" />

@@ -41,6 +41,9 @@
             <x-mary-menu-item title="Dashboard" icon="o-home" link="/dashboard" class="py-4" />
             <x-mary-menu-separator />
 
+            <x-mary-menu-item title="My Clearance(s)" icon="o-home" link="/my-clearance" class="py-4" />
+                <x-mary-menu-separator />
+
             @if(auth()->user()->hasRole(1))
                 <x-mary-menu-item title="Employee Clearance(s)" icon="o-home" link="/clearance-management" class="py-4" />
                 <x-mary-menu-separator />
