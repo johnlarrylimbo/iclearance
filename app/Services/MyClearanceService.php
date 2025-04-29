@@ -33,6 +33,24 @@ class MyClearanceService extends Service
 			}
     }
 
+    public function searchMyClearanceLstByKeyword( string $search_query, int $param_user_account_id)
+	{
+		try {
+			$search = $search_query ?? ''; 
+      $user_account_id = $param_user_account_id ?? 0;      
+				$result = $this->sp
+									->stored_procedure('pr_clearance_my_clearance_by_user_account_id_keyword_lst')
+									->stored_procedure_connection('iclearance_connection')
+									->stored_procedure_params([':keyword, :user_account_id'])
+									->stored_procedure_values([$search, $user_account_id])
+									->execute();
+
+				return $result->stored_procedure_result();
+		} catch (Exception $exception) {
+				throw new Exception('Error getting clearance area options', 500, $exception);
+		}
+	}
+
     public function loadMyClearanceDetailByClearanceDetailId(int $param_clearance_detail_id)
     {
 			try {
