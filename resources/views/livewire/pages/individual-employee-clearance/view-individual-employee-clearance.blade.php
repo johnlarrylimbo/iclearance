@@ -37,7 +37,7 @@
                   <tr>
                     <th class="th-uic-pink-14" width="5%">#</th>
                     <th class="th-uic-pink-14" width="40%">Description</th>
-                    <th class="th-uic-pink-14">Status</th>
+                    <th class="th-uic-pink-14" width="13%">Status</th>
                     <th class="th-uic-pink-14">Cleared By</th>
                     <th class="th-uic-pink-14">Date Cleared</th>
                     <th class="th-uic-pink-14">Pre-requisite Area</th>
