@@ -54,7 +54,14 @@
                             <x-mary-badge value="{{ $result->area_statuscode_label }}" class="badge-primary" />
                           @endif
                         </td>
-                        <td class="align-center">{{ $result->clearance_signature }}</td>
+                        <td class="align-center">
+                          {{-- {{ $result->clearance_signature }} --}}
+                          @if($result->is_bypass == 1)
+                          {{ $result->bypass_by_name }}
+                          @else
+                            {{ $result->cleared_by_signature }}
+                          @endif
+                        </td>
                         <td class="align-center">{{ $result->cleared_datetime }}</td>
                         <td class="align-center">
                           @if($result->clearance_requisite_area == '')
