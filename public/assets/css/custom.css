@@ -245,3 +245,27 @@ svg{
   font-weight: bold;
 }
 
+.collapse-row {
+  transition: all 0.10s ease;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.collapse-row.expanded {
+  max-height: 200px; /* or whatever fits your content */
+  opacity: 1;
+  visibility: visible;
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
