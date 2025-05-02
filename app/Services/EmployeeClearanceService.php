@@ -116,16 +116,17 @@ class EmployeeClearanceService extends Service
 		}
 	}
 
-  public function UpdateEmployeeClearanceAreaStatus(int $clearance_detail_id_value, int $clearance_area_id_value, int $status_value){
+  public function UpdateEmployeeClearanceAreaStatus(int $clearance_detail_id_value, int $clearance_area_id_value, int $status_value, int $user_account_id_value){
 		try {
       $clearance_detail_id = $clearance_detail_id_value ?? 0;
       $clearance_area_id = $clearance_area_id_value ?? 0;
       $status = $status_value ?? 0;    
+			$user_account_id = $user_account_id_value ?? 0;    
 				$result = $this->sp
 						->stored_procedure('pr_employee_clearance_area_status_upd')
 						->stored_procedure_connection('iclearance_connection')
-            ->stored_procedure_params([':clearance_detail_id, :clearance_area_id, :status, :result_id'])
-						->stored_procedure_values([$clearance_detail_id, $clearance_area_id, $status, 0])
+            ->stored_procedure_params([':clearance_detail_id, :clearance_area_id, :status, :user_account_id, :result_id'])
+						->stored_procedure_values([$clearance_detail_id, $clearance_area_id, $status, $user_account_id, 0])
 						->execute();
 
 				return $result->stored_procedure_result();

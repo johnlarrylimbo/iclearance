@@ -99,7 +99,7 @@ class WireEmployeeClearance extends Component
 		// $this->message = 'Record deleted successfully!';
 
 		// $this->loadRecords();
-		return $this->employee_clearance_service->UpdateEmployeeClearanceAreaStatus($clearance_detail_id, $clearance_area_id, $status);
+		return $this->employee_clearance_service->UpdateEmployeeClearanceAreaStatus($clearance_detail_id, $clearance_area_id, $status, auth()->user()->user_account_id);
 		// dd("Input updated: " . $clearance_detail_id);
 
 		// $details = [
