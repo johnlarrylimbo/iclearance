@@ -174,7 +174,7 @@
                         </td>
                         <td class="align-center">
                           @if($employee_active_clearance_detail_lst->is_bypass == 1)
-                          {{ $employee_active_clearance_detail_lst->bypass_by_name }}
+                            {!! $employee_active_clearance_detail_lst->bypass_by_name !!}
                           @else
                             {{ $employee_active_clearance_detail_lst->cleared_by_signature }}
                           @endif
