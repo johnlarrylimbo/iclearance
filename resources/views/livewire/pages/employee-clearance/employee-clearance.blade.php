@@ -76,12 +76,12 @@
             @if ($expandedRowId == $result->clearance_detail_id)
                 <tr class="collapse-row {{ $expandedRowId == $result->clearance_detail_id ? 'expanded' : '' }}">
                     <tr>
-                      <td colspan="6">
-                        <table style="width: 97%; margin: 0px auto;">
+                      <td colspan="6" style="background-color: #ffffff;">
+                        <table style="width: 97%; margin: 0px auto; border: 3px solid gray; color: #000000;">
                           <thead>
                             <tr>
                               <td colspan="6" class="p-4 border bg-gray-100" style="background-color: #E82561; color: #ffffff;">
-                                <strong>CLEARANCE DETAILS:</strong>
+                                <strong>CLEARANCE DETAILS: </strong>
                               </td>
                             </tr>
                             <tr style="background-color: #F2AE66">
