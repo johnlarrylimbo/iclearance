@@ -57,7 +57,8 @@
                         <td class="align-center">
                           {{-- {{ $result->clearance_signature }} --}}
                           @if($result->is_bypass == 1)
-                            {{ html_entity_decode($result->bypass_by_name) }}
+                            {{ 'Cleared via By Pass:' }} <br />
+                            {{ $result->bypass_by_name }}
                           @else
                             {{ $result->cleared_by_signature }}
                           @endif
