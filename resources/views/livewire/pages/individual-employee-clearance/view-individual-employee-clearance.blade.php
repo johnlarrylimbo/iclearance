@@ -172,7 +172,13 @@
                             <x-mary-badge value="{{ $employee_active_clearance_detail_lst->area_statuscode_label }}" class="badge-primary" />
                           @endif
                         </td>
-                        <td class="align-center">{{ $employee_active_clearance_detail_lst->cleared_by_signature }}</td>
+                        <td class="align-center">
+                          @if($employee_active_clearance_detail_lst->is_bypass == 1)
+                          {{ $employee_active_clearance_detail_lst->bypass_by_name }}
+                          @else
+                            {{ $employee_active_clearance_detail_lst->cleared_by_signature }}
+                          @endif
+                        </td>
                         <td class="align-center">{{ $employee_active_clearance_detail_lst->datetime_cleared }}</td>
                         <td class="align-center">
                           @if($employee_active_clearance_detail_lst->clearance_requisite_area == '')
