@@ -26,11 +26,11 @@
       <thead>
         <tr class="fs-14 pink" style="height: 88px !important;">
           <th class="align-center wd-5">#</th>
-          <th class="align-center w-20">Employee Name</th>
-          <th class="align-center wd-5">Gender</th>
-          <th class="align-center wd-5">Email</th>
-          <th class="align-center wd-5">Department</th>
-          <th class="align-center wd-5">Manage</th>
+          <th class="align-center w-30">Employee Name</th>
+          <th class="align-center wd-10">Gender</th>
+          <th class="align-center wd-10">Email</th>
+          <th class="align-center wd-10">Department</th>
+          <th class="align-center wd-10">Manage</th>
           {{-- @if(count($this->clearance_area_lst) == 0)
             <th class="align-center" colspan="5">No available assigned clearance area</th>
           @else
