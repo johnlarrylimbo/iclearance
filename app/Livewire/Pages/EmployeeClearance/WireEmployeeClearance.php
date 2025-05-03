@@ -117,25 +117,8 @@ class WireEmployeeClearance extends Component
 	
 
 	public function update_area_status($clearance_detail_area_id, $status){
-		// DB::select('CALL sp_brand_del(?)', [ $id ]);
-		// // Flash success message
-		// $this->message_type = 'deleted';
-		// $this->message = 'Record deleted successfully!';
-
-		// $this->loadRecords();
+		
 		return $this->employee_clearance_service->UpdateEmployeeClearanceAreaDetailStatus($clearance_detail_area_id, $status, auth()->user()->user_account_id);
-		// dd("Input updated: " . $clearance_detail_id);
-
-		// $details = [
-		// 	'name' => 'John Larry',
-		// 	'email' => 'jlimbo@uic.edu.ph',
-		// 	'message' => 'Test message only.',
-		// ];
-
-		// Mail::to('jlimbo@uic.edu.ph')->send(new EmployeeClearanceAreaStatusUpdateMailer($details));
-
-		// // session()->flash('success', 'Email sent successfully!');
-		// $this->reset();
 
 		$this->employee_clearance_lst();
 	}

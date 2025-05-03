@@ -8,6 +8,7 @@ use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Computed;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use App\Services\ClearanceService;
 use App\Services\PeriodTypeService;
@@ -200,6 +201,15 @@ class WireClearance extends Component
 			
       // Toast
       if ($result[0]->result_id > 0) {
+
+        Log::channel('transaction')->info('Created semestral clearance:', [
+          'period_type_id' => $this->period_type_id,
+          'period_id' => $this->period_id,
+          'clearance_type_id' => $this->clearance_type_id,
+          'description' => $this->description,
+          'is_open' => $this->is_open, 
+          'user_account_id' => auth()->user()->user_account_id]);
+
         $this->success('Clearance ecord added successfully!');
       }else{
         $this->success('Failed to add new clearance. Please try again later!');
@@ -243,7 +253,16 @@ class WireClearance extends Component
 			
       // Toast
       if ($result[0]->result_id > 0) {
-        $this->success('Clearance ecord added successfully!');
+
+        Log::channel('transaction')->info('Created annual clearance:', [
+          'period_type_id' => $this->period_type_id,
+          'period_id' => $this->period_id,
+          'clearance_type_id' => $this->clearance_type_id,
+          'description' => $this->description,
+          'is_open' => $this->is_open, 
+          'user_account_id' => auth()->user()->user_account_id]);
+
+        $this->success('Clearance record added successfully!');
       }else{
         $this->success('Failed to add new clearance. Please try again later!');
       }
@@ -299,6 +318,13 @@ class WireClearance extends Component
 			
       // Toast
       if ($result[0]->result_id > 0) {
+
+        Log::channel('transaction')->info('Updated clearance:', [
+          'clearance_id' => $this->clearance_id,
+          'description' => $this->edit_description,
+          'is_open' => $this->edit_is_open, 
+          'user_account_id' => auth()->user()->user_account_id]);
+
         $this->success('Record updated successfully!');
       }else{
         $this->success('Failed to update clearance area. Please try again later.');
@@ -328,6 +354,11 @@ class WireClearance extends Component
 		
 		// Toast
     if ($result[0]->result_id > 0) {
+
+      Log::channel('transaction')->info('Delete clearance:', [
+        'clearance_id' => $this->clearance_id,
+        'user_account_id' => auth()->user()->user_account_id]);
+
       $this->success('Clearance record deleted successfully!');
     }else{
       $this->error('Failed to remove clearance. Clearance might be used by other records or please try again later.');

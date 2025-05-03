@@ -8,6 +8,7 @@ use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Computed;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use App\Services\AccessPermissionService;
 use App\Services\SelectOptionLibraryService;
@@ -93,6 +94,10 @@ class WireAccessPermission extends Component
       $param = [  $this->clearance_area_id, auth()->user()->user_account_id, 0 ];
       $sp_query = "EXEC pr_access_permission_request_ins :clearance_area_id, :account_id, :result_id;";
       $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+
+			Log::channel('transaction')->info('Added access permission request:', [
+				'clearance_area_id' => $this->clearance_area_id, 
+				'user_account_id' => auth()->user()->user_account_id]);
 			
       // Toast
       if ($result[0]->result_id > 0) {
@@ -144,6 +149,11 @@ class WireAccessPermission extends Component
       $param = [  $this->access_permission_request_id, $this->edit_clearance_area_id, 0 ];
       $sp_query = "EXEC pr_access_permission_request_by_id_upd :access_permission_request_id, :clearance_area_id, :result_id;";
       $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+
+			Log::channel('transaction')->info('Updated access permission request:', [
+				'access_permission_request_id' => $this->access_permission_request_id, 
+				'clearance_area_id' => $this->edit_clearance_area_id, 
+				'user_account_id' => auth()->user()->user_account_id]);
 			
       // Toast
       if ($result[0]->result_id > 0) {
@@ -175,6 +185,11 @@ class WireAccessPermission extends Component
 		
 		// Toast
     if ($result[0]->result_id > 0) {
+
+			Log::channel('transaction')->info('Deleted access permission request:', [
+				'access_permission_request_id' => $this->access_permission_request_id,
+				'user_account_id' => auth()->user()->user_account_id]);
+
       $this->success('Access permission request deleted successfully!');
     }else{
       $this->error('Failed to remove access permission request. Request might be used by other records or please try again later.');
