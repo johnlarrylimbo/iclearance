@@ -46,7 +46,7 @@
                         <td class="text-center align-middle custom-td">
                           &nbsp;
                         </td>
-                        <td>&nbsp;&nbsp;&nbsp;{{ $result->clearance_area_label }}</td>
+                        <td>{{ $result->clearance_area_label }}</td>
                         <td class="align-center">
                           @if($result->is_cleared == 0)
                             <x-mary-badge value="{{ $result->area_statuscode_label }}" class="badge-warning" />
