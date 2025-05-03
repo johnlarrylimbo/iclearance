@@ -5,6 +5,7 @@ namespace App\Services;
 use Exception;
 
 use MagsLabs\LaravelStoredProc\StoredProcedure as SP;
+use Illuminate\Support\Facades\Log;
 
 class ClearanceEmployeeEnrollmentService extends Service
 {
@@ -39,17 +40,23 @@ class ClearanceEmployeeEnrollmentService extends Service
 			try {
         $clearance_id = $clearance_id_value ?? 0;   
 				$employee_id = $employee_id_value ?? 0; 
-				$account_id = $account_id_value ?? 0;       
-					$result = $this->sp
-										->stored_procedure('pr_employee_clearance_detail_populate_by_employee_clearance_id')
-										->stored_procedure_connection('iclearance_connection')
-										->stored_procedure_params([':clearance_id, :employee_id, :account_id, :result_id'])
-										->stored_procedure_values([$clearance_id, $employee_id, $account_id, 0])
-										->execute();
+				$account_id = $account_id_value ?? 0; 
 
-					return $result->stored_procedure_result();
+				$result = $this->sp
+									->stored_procedure('pr_employee_clearance_detail_populate_by_employee_clearance_id')
+									->stored_procedure_connection('iclearance_connection')
+									->stored_procedure_params([':clearance_id, :employee_id, :account_id, :result_id'])
+									->stored_procedure_values([$clearance_id, $employee_id, $account_id, 0])
+									->execute();
+
+				Log::channel('transaction')->info('Populate employee clearance detail:', [
+										'clearance_id' => $clearance_id, 
+										'employee_id' => $employee_id,
+										'account_id' => $account_id]);
+
+				return $result->stored_procedure_result();
 			} catch (Exception $exception) {
-					throw new Exception('Error adding employee clearance detail', 500, $exception);
+				throw new Exception('Error adding employee clearance detail', 500, $exception);
 			}
     }
     

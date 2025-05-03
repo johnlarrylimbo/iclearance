@@ -189,16 +189,28 @@ class EmployeeClearanceService extends Service
 		try {
       $clearance_detail_area_id = $clearance_detail_area_id_value ?? 0;
       $status = $status_value ?? 0;    
-			$user_account_id = $user_account_id_value ?? 0;    
-				$result = $this->sp
-						->stored_procedure('pr_employee_clearance_area_detail_status_upd')
-						->stored_procedure_connection('iclearance_connection')
-            ->stored_procedure_params([':clearance_detail_area_id, :status, :user_account_id, :result_id'])
-						->stored_procedure_values([$clearance_detail_area_id, $status, $user_account_id, 0])
-						->execute();
+			$user_account_id = $user_account_id_value ?? 0; 
+			
+			if($status == 0){
+				$updated_to = 1;
+			}else{
+				$updated_to = 0;
+			}
 
-						Log::channel('transaction')->info('Updated clearance area status:', ['clearance_detail_area_id' => auth()->user()->user_account_id]);
-						// Log::channel('transaction')->debug('User action', ['user_id' => auth()->user()->user_account_id]);
+			$result = $this->sp
+					->stored_procedure('pr_employee_clearance_area_detail_status_upd')
+					->stored_procedure_connection('iclearance_connection')
+					->stored_procedure_params([':clearance_detail_area_id, :status, :user_account_id, :result_id'])
+					->stored_procedure_values([$clearance_detail_area_id, $status, $user_account_id, 0])
+					->execute();
+
+
+
+			Log::channel('transaction')->info('Updated clearance area status:', [
+																																						'clearance_detail_area_id' => $clearance_detail_area_id, 
+																																						'from_status' => $status,
+																																						'to_status' => $updated_to,
+																																						'updated_by' => $user_account_id]);
 
 				return $result->stored_procedure_result();
 		} catch (Exception $exception) {
