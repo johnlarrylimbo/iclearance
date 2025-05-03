@@ -77,7 +77,11 @@ class WireViewIndividualEmployeeClearance extends Component
 	}
 	
 	public function update_clearance_detail_status($clearance_detail_area_id, $status){
+		// Log::channel('transaction')->info('This is a custom log entry.');
+		// Log::channel('transaction')->debug('User action', ['user_id' => auth()->user()->user_account_id]);
 		return $this->employee_clearance_service->UpdateEmployeeClearanceAreaDetailStatus($clearance_detail_area_id, $status, auth()->user()->user_account_id);
+
+		
 
 		$this->employee_active_clearance_detail_lst();
 	}

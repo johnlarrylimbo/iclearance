@@ -129,9 +129,15 @@ return [
 
         'transaction' => [
             'driver' => 'single',
-						// 'tap' => [SimpleFormatter::class],
+                        // 'tap' => [SimpleFormatter::class],
 						'path' => storage_path('logs/transaction.log'),
-						'level' => 'debug'
+						'level' => 'debug',
+        ],
+
+        'magslabs_laravel_stored_proc' => [
+            'driver' => 'single', // or 'daily' if you want rotation
+            'path' => storage_path('logs/magslabs_laravel_stored_proc.log'),
+            'level' => 'debug',
         ],
 
     ],

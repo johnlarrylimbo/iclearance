@@ -9,6 +9,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use App\Services\EmployeeClearanceService;
 use Illuminate\Support\Facades\Mail;
@@ -123,7 +124,16 @@ class WireEmployeeClearance extends Component
 		// $this->message = 'Record deleted successfully!';
 
 		// $this->loadRecords();
-		return $this->employee_clearance_service->UpdateEmployeeClearanceAreaDetailStatus($clearance_detail_area_id, $status, auth()->user()->user_account_id);
+		// return $this->employee_clearance_service->UpdateEmployeeClearanceAreaDetailStatus($clearance_detail_area_id, $status, auth()->user()->user_account_id);
+		Log::channel('transaction')->info('This is a custom log entry.');
+		Log::channel('transaction')->debug('User action', ['user_id' => auth()->user()->user_account_id]);
+		$return = $this->employee_clearance_service->UpdateEmployeeClearanceAreaDetailStatus($clearance_detail_area_id, $status, auth()->user()->user_account_id);
+
+		if($return > 0){
+			Log::channel('transaction')->info('This is a custom log entry.');
+			Log::channel('transaction')->debug('User action', ['user_id' => auth()->user()->user_account_id]);
+		}
+		
 		// dd("Input updated: " . $clearance_detail_id);
 
 		// $details = [

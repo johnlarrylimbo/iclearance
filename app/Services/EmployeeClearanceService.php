@@ -5,6 +5,7 @@ namespace App\Services;
 use Exception;
 
 use MagsLabs\LaravelStoredProc\StoredProcedure as SP;
+use Illuminate\Support\Facades\Log;
 
 class EmployeeClearanceService extends Service
 {
@@ -195,6 +196,9 @@ class EmployeeClearanceService extends Service
             ->stored_procedure_params([':clearance_detail_area_id, :status, :user_account_id, :result_id'])
 						->stored_procedure_values([$clearance_detail_area_id, $status, $user_account_id, 0])
 						->execute();
+
+						Log::channel('transaction')->info('Updated clearance area status:', ['clearance_detail_area_id' => auth()->user()->user_account_id]);
+						// Log::channel('transaction')->debug('User action', ['user_id' => auth()->user()->user_account_id]);
 
 				return $result->stored_procedure_result();
 		} catch (Exception $exception) {
