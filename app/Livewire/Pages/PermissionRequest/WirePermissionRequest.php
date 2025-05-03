@@ -8,6 +8,7 @@ use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Computed;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use App\Services\PermissionRequestService;
 use App\Services\SelectOptionLibraryService;
@@ -89,6 +90,11 @@ class WirePermissionRequest extends Component
     $param = [  $access_permission_request_id, $this->access_permission_department_id, auth()->user()->user_account_id, 0 ];
     $sp_query = "EXEC pr_access_permission_request_approve_by_id :access_permission_request_id, :access_permission_department_id, :user_account_id, :result_id;";
     $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+
+		Log::channel('transaction')->info('Approved access permission:', [
+			'access_permission_request_id' => $access_permission_request_id, 
+			'access_permission_department_id' => $this->access_permission_department_id,
+			'user_account_id' => auth()->user()->user_account_id]);
 		
 		// Toast
     $this->success('Access permission request approved successfully!');
@@ -106,6 +112,10 @@ class WirePermissionRequest extends Component
     $param = [  $access_permission_request_id, 0 ];
     $sp_query = "EXEC pr_access_permission_request_disapprove_by_id :access_permission_request_id, :result_id;";
     $result = DB::connection('iclearance_connection')->select($sp_query, $param);
+
+		Log::channel('transaction')->info('Disapproved access permission:', [
+			'access_permission_request_id' => $access_permission_request_id, 
+			'user_account_id' => auth()->user()->user_account_id]);
 		
 		// Toast
     $this->success('Access permission request successfully disapproved!');
