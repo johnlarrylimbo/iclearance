@@ -30,7 +30,10 @@
 
             <x-mary-tab name="clearance-1" label="{{ $clearance_description }}" icon="s-folder">
                 <div class="clearance-head-div">{{ $clearance_description }}</div>
-               
+                <div class="instruction-div">
+                  <strong>Instruction:</strong> <br />
+                  1) Areas with prerequisites will be enabled for tagging once their required/pre-requisite areas are cleared.
+                </div>
                 <table width="100%">
                   <tr>
                     <th class="th-uic-pink-14" width="5%">#</th>
